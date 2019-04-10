@@ -1,8 +1,9 @@
 {
   "name": "type-steem",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "Typescript Library for Steem",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "testlib"
   },
@@ -19,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/gitschwifty/type-steem/issues"
   },
-  "homepage": "https://github.com/gitschwifty/type-steem#readme"
+  "homepage": "https://github.com/gitschwifty/type-steem#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.2",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.4.3"
+  }
 }
