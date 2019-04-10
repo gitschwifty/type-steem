@@ -1,0 +1,23 @@
+{
+  "name": "type-steem",
+  "version": "1.0.0",
+  "description": "Typescript Library for Steem",
+  "main": "index.js",
+  "scripts": {
+    "test": "testlib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitschwifty/type-steem.git"
+  },
+  "keywords": [
+    "typescript",
+    "steem"
+  ],
+  "author": "pjtaggart",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gitschwifty/type-steem/issues"
+  },
+  "homepage": "https://github.com/gitschwifty/type-steem#readme"
+}
