@@ -1,0 +1,4 @@
+require: ./babel-register.js
+extension: .ts
+reporter: spec
+spec: test/**/*
