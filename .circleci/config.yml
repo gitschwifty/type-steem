@@ -9,26 +9,31 @@ jobs:
       - image: circleci/node:11.12.0
     steps:
       - checkout
+      - run: mkdir reports
       - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
 
-      - run: npm install mocha-junit-reporter codacy-coverage # just for CircleCI
+      - run:
+          name: install-reporters
+          command: npm install mocha-junit-reporter codacy-coverage # just for CircleCI
 
       - run:
           name: install-npm
           command: npm install
 
-      - run: mkdir reports
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run compile
+      - run:
+          name: compile-dist
+          command: npm run compile
 
       # Run mocha
       - run:
@@ -61,7 +66,9 @@ jobs:
             ./cc-test-reporter after-build -t lcov
           when: always
 
-      - run: cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
+      - run:
+          name: codacy-report
+          command: cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
 
       # Upload results
 
