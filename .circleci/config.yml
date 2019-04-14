@@ -61,7 +61,7 @@ jobs:
             ./cc-test-reporter after-build -t lcov
           when: always
 
-      - run: cat ./coverage/lcov.info | codacy-coverage
+      - run: cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
 
       # Upload results
 
@@ -77,8 +77,3 @@ jobs:
       - store_artifacts: # upload test coverage as artifact
           path: ./coverage/lcov.info
           prefix: tests
-      - run:
-          name: Setup Code Climate test-reporter
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
