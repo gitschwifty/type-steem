@@ -26,12 +26,12 @@ export class Client {
       this.steemNode = 'https://api.steem.house';
     }
 
-    if (options) {
+    /* if (options) {
       this.options = options;
-    }
+    } */
   }
 
-  public async callApi(
+  public callApi(
     api: string,
     method: string,
     params: unknown[] = []
@@ -54,30 +54,19 @@ export class Client {
     return new Promise((resolve, reject) => {
       fetch(this.steemNode, opts)
         .then(response => {
-          if (!response.ok) {
-            reject(
-              new Error(`HTTP ${response.status}: ${response.statusText}`)
-            );
-          } else {
-            resolve(response.json());
-          }
+          return response.json();
+        })
+        .then(json => {
+          resolve(json.result);
         })
         .catch(err => {
-          reject(new Error(err));
+          reject(err);
         });
     });
   }
 
   public getAccountCount() {
-    return new Promise((resolve, reject) => {
-      this.callApi('condenser_api', 'get_account_count')
-        .then(json => {
-          resolve(Number(json.result));
-        })
-        .catch(err => {
-          reject(new Error(err));
-        });
-    });
+    return this.callApi('condenser_api', 'get_account_count');
   }
 
   public getAccountHistory(account: string, start: number, limit: number) {
@@ -93,17 +82,15 @@ export class Client {
       throw new Error('Limit must be positive and less than 10,000.');
     }
 
-    this.callApi('condenser_api', 'get_account_history', [
+    if (start < limit) {
+      throw new Error('Start must be greater than limit.');
+    }
+
+    return this.callApi('condenser_api', 'get_account_history', [
       account,
       start,
       limit
-    ])
-      .then(json => {
-        return json;
-      })
-      .catch(err => {
-        throw new Error(err);
-      });
+    ]);
   }
 
   public getAccountReputations(account: string, limit: number) {
@@ -111,24 +98,13 @@ export class Client {
       throw new Error('Limit must be positive and less than 1,000.');
     }
 
-    this.callApi('condenser_api', 'get_account_reputations', [account, limit])
-      .then(json => {
-        return json;
-      })
-      .catch(err => {
-        throw new Error(err);
-      });
+    return this.callApi('condenser_api', 'get_account_reputations', [
+      account,
+      limit
+    ]);
   }
 
-  public getAccounts(accounts: string[] = ['']) {
-    return new Promise((resolve, reject) => {
-      this.callApi('condenser_api', 'get_accounts', [accounts])
-        .then(json => {
-          resolve(json.result);
-        })
-        .catch(err => {
-          reject(new Error(err));
-        });
-    });
+  public getAccounts(accounts: string[]) {
+    return this.callApi('condenser_api', 'get_accounts', [accounts]);
   }
 }
