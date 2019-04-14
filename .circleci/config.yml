@@ -30,6 +30,11 @@ jobs:
 
       - run: mkdir reports
 
+      - run:
+        name: npm compile
+        command: npm run compile
+        when: always
+
       # Run mocha
       - run:
           name: npm test
