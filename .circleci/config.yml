@@ -27,9 +27,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run:
-        name: npm compile
-        command: npm run compile
+      - run: npm run compile
 
       # Run mocha
       - run:
