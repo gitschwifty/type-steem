@@ -31,6 +31,8 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+      # compile the repo to ./dist
       - run:
           name: compile-dist
           command: npm run compile
@@ -39,13 +41,13 @@ jobs:
       - run:
           name: npm test
           command: ./node_modules/.bin/nyc ./node_modules/.bin/mocha --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
-          when: always
 
       # Run eslint
       - run:
           name: tslint
           command: |
             npm run lint
+          when: always
 
       - run:
           name: Setup Code Climate test-reporter
@@ -69,6 +71,7 @@ jobs:
       - run:
           name: codacy-report
           command: cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
+          when: always
 
       # Upload results
 
