@@ -27,9 +27,6 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run: mkdir reports
-
       - run:
         name: npm compile
         command: npm run compile
