@@ -85,23 +85,30 @@ export class Client {
       mode: 'cors'
     };
 
-    return new Promise((resolve, reject) => {
-      fetch(this.steemNode, opts)
-        .then(response => {
-          return response.json();
-        })
-        .then(json => {
-          /* istanbul ignore else */
-          if (json.result) {
-            resolve(json.result);
-          } else {
-            resolve(this.APIRetry(opts, 1));
-          }
-        })
-        .catch(err => {
-          reject(err);
-        });
-    });
+    return this.APIRetry(opts, 0);
+  }
+
+  public callAppbaseApi(
+    api: APIType,
+    method: string,
+    params: unknown = {}
+  ): Promise<APIResult> {
+    const request: RPCCall = {
+      id: '0',
+      method: 'call',
+      jsonrpc: '2.0',
+      params: [api, method, params]
+    };
+
+    const opts: RequestInit = {
+      body: JSON.stringify(request),
+      cache: 'no-cache',
+      headers: { 'User-Agent': 'type-steem' },
+      method: 'POST',
+      mode: 'cors'
+    };
+
+    return this.APIRetry(opts, 0);
   }
 
   /* istanbul ignore next */
