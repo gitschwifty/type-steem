@@ -1,7 +1,7 @@
 export interface Transaction {
   ref_block_num: number;
   ref_block_prefix: number;
-  expiration: Date;
+  expiration: string;
   operations: unknown[];
   extensions: unknown[];
 }

@@ -1,12 +1,12 @@
 {
   "check-coverage": true,
   "per-file": true,
-  "lines": 99,
-  "statements": 99,
-  "functions": 99,
-  "branches": 99,
+  "lines": 95,
+  "statements": 95,
+  "functions": 95,
+  "branches": 95,
   "include": ["dist/**/*"],
-  "reporter": ["text-summary"],
+  "reporter": ["text-summary", "lcov"],
   "extension": [".ts"],
   "report-dir": "./coverage"
 }

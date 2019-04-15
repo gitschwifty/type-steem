@@ -67,7 +67,7 @@ type VirtualOperationType =
   | 'comment_benefactor_reward'
   | 'producer_reward';
 
-export interface Operation {
+export interface RealOperation {
   0: OperationType;
   1: { [key: string]: unknown };
 }
@@ -77,7 +77,7 @@ export interface VirtualOperation {
   1: { [key: string]: unknown };
 }
 
-export interface VoteOperation extends Operation {
+export interface VoteOperation extends RealOperation {
   0: 'vote';
   1: {
     voter: string;
@@ -87,7 +87,7 @@ export interface VoteOperation extends Operation {
   };
 }
 
-export interface CommentOperation extends Operation {
+export interface CommentOperation extends RealOperation {
   0: 'comment';
   1: {
     parent_author: string;
@@ -100,7 +100,7 @@ export interface CommentOperation extends Operation {
   };
 }
 
-export interface TransferOperation extends Operation {
+export interface TransferOperation extends RealOperation {
   0: 'transfer';
   1: {
     from: string;
@@ -110,7 +110,7 @@ export interface TransferOperation extends Operation {
   };
 }
 
-export interface TransferToVestingOperation extends Operation {
+export interface TransferToVestingOperation extends RealOperation {
   0: 'transfer_to_vesting';
   1: {
     from: string;
@@ -119,7 +119,7 @@ export interface TransferToVestingOperation extends Operation {
   };
 }
 
-export interface WithdrawVestingOperation extends Operation {
+export interface WithdrawVestingOperation extends RealOperation {
   0: 'withdraw_vesting';
   1: {
     account: string;
@@ -127,7 +127,7 @@ export interface WithdrawVestingOperation extends Operation {
   };
 }
 
-export interface CreateLimitOrderOperation extends Operation {
+export interface CreateLimitOrderOperation extends RealOperation {
   0: 'limit_order_create';
   1: {
     owner: string;
@@ -139,7 +139,7 @@ export interface CreateLimitOrderOperation extends Operation {
   };
 }
 
-export interface CancelLimitOrderOperation extends Operation {
+export interface CancelLimitOrderOperation extends RealOperation {
   0: 'limit_order_cancel';
   1: {
     owner: string;
@@ -147,7 +147,7 @@ export interface CancelLimitOrderOperation extends Operation {
   };
 }
 
-export interface PriceOperation extends Operation {
+export interface PriceOperation extends RealOperation {
   0: 'price';
   1: {
     base: Asset;
@@ -155,7 +155,7 @@ export interface PriceOperation extends Operation {
   };
 }
 
-export interface PublishFeedOperation extends Operation {
+export interface PublishFeedOperation extends RealOperation {
   0: 'feed_publish';
   1: {
     publisher: string;
@@ -166,7 +166,7 @@ export interface PublishFeedOperation extends Operation {
   };
 }
 
-export interface ConvertOperation extends Operation {
+export interface ConvertOperation extends RealOperation {
   0: 'convert';
   1: {
     owner: string;
@@ -175,7 +175,7 @@ export interface ConvertOperation extends Operation {
   };
 }
 
-export interface CreateAccountOperation extends Operation {
+export interface CreateAccountOperation extends RealOperation {
   0: 'account_create';
   1: {
     fee: Asset;
@@ -189,7 +189,7 @@ export interface CreateAccountOperation extends Operation {
   };
 }
 
-export interface CreateClaimedAccountOperation extends Operation {
+export interface CreateClaimedAccountOperation extends RealOperation {
   0: 'create_claimed_account';
   1: {
     creator: string;
@@ -202,7 +202,7 @@ export interface CreateClaimedAccountOperation extends Operation {
   };
 }
 
-export interface ClaimAccountOperation extends Operation {
+export interface ClaimAccountOperation extends RealOperation {
   0: 'claim_account';
   1: {
     fee: Asset;
@@ -211,7 +211,7 @@ export interface ClaimAccountOperation extends Operation {
   };
 }
 
-export interface SetWitnessPropertiesOperation extends Operation {
+export interface SetWitnessPropertiesOperation extends RealOperation {
   0: 'witness_set_properties';
   1: {
     owner: string;
@@ -220,7 +220,7 @@ export interface SetWitnessPropertiesOperation extends Operation {
   };
 }
 
-export interface UpdateAccountOperation extends Operation {
+export interface UpdateAccountOperation extends RealOperation {
   0: 'account_update';
   1: {
     account: string;
@@ -232,7 +232,7 @@ export interface UpdateAccountOperation extends Operation {
   };
 }
 
-export interface ReportOverproductionOperation extends Operation {
+export interface ReportOverproductionOperation extends RealOperation {
   0: 'report_over_production';
   1: {
     reporter: string;
@@ -241,7 +241,7 @@ export interface ReportOverproductionOperation extends Operation {
   };
 }
 
-export interface UpdateWitnessOperation extends Operation {
+export interface UpdateWitnessOperation extends RealOperation {
   0: 'witness_update';
   1: {
     owner: string;
@@ -256,7 +256,7 @@ export interface UpdateWitnessOperation extends Operation {
   };
 }
 
-export interface WitnessVoteOperation extends Operation {
+export interface WitnessVoteOperation extends RealOperation {
   0: 'account_witness_vote';
   1: {
     account: string;
@@ -265,7 +265,7 @@ export interface WitnessVoteOperation extends Operation {
   };
 }
 
-export interface WitnessProxyOperation extends Operation {
+export interface WitnessProxyOperation extends RealOperation {
   0: 'account_witness_proxy';
   1: {
     account: string;
@@ -273,7 +273,7 @@ export interface WitnessProxyOperation extends Operation {
   };
 }
 
-export interface PowOperation extends Operation {
+export interface PowOperation extends RealOperation {
   0: 'pow';
   1: {
     worker_account: string;
@@ -293,7 +293,7 @@ export interface PowOperation extends Operation {
   };
 }
 
-export interface CustomOperation extends Operation {
+export interface CustomOperation extends RealOperation {
   0: 'custom';
   1: {
     required_auths: string[];
@@ -302,7 +302,7 @@ export interface CustomOperation extends Operation {
   };
 }
 
-export interface DeleteCommentOperation extends Operation {
+export interface DeleteCommentOperation extends RealOperation {
   0: 'delete_comment';
   1: {
     author: string;
@@ -310,7 +310,7 @@ export interface DeleteCommentOperation extends Operation {
   };
 }
 
-export interface CustomJsonOperation extends Operation {
+export interface CustomJsonOperation extends RealOperation {
   0: 'custom';
   1: {
     required_auths: string[];
@@ -320,7 +320,7 @@ export interface CustomJsonOperation extends Operation {
   };
 }
 
-export interface CommentOptionsOperation extends Operation {
+export interface CommentOptionsOperation extends RealOperation {
   0: 'comment_options';
   1: {
     author: string;
@@ -333,7 +333,7 @@ export interface CommentOptionsOperation extends Operation {
   };
 }
 
-export interface SetWithdrawVestingRouteOperation extends Operation {
+export interface SetWithdrawVestingRouteOperation extends RealOperation {
   0: 'set_withdraw_vesting_route';
   1: {
     from_account: string;
@@ -343,7 +343,7 @@ export interface SetWithdrawVestingRouteOperation extends Operation {
   };
 }
 
-export interface CreateLimitOrderTwoOperation extends Operation {
+export interface CreateLimitOrderTwoOperation extends RealOperation {
   0: 'limit_order_create2';
   1: {
     owner: string;
@@ -358,7 +358,7 @@ export interface CreateLimitOrderTwoOperation extends Operation {
   };
 }
 
-export interface ChallengeAuthorityOperation extends Operation {
+export interface ChallengeAuthorityOperation extends RealOperation {
   0: 'challenge_authority';
   1: {
     challenger: string;
@@ -367,7 +367,7 @@ export interface ChallengeAuthorityOperation extends Operation {
   };
 }
 
-export interface ProveAuthorityOperation extends Operation {
+export interface ProveAuthorityOperation extends RealOperation {
   0: 'prove_authority';
   1: {
     challenged: string;
@@ -375,7 +375,7 @@ export interface ProveAuthorityOperation extends Operation {
   };
 }
 
-export interface RequestAccountRecoveryOperation extends Operation {
+export interface RequestAccountRecoveryOperation extends RealOperation {
   0: 'request_account_recovery';
   1: {
     recovery_account: string;
@@ -385,7 +385,7 @@ export interface RequestAccountRecoveryOperation extends Operation {
   };
 }
 
-export interface RecoverAccountOperation extends Operation {
+export interface RecoverAccountOperation extends RealOperation {
   0: 'recover_account';
   1: {
     account_to_recover: string;
@@ -395,7 +395,7 @@ export interface RecoverAccountOperation extends Operation {
   };
 }
 
-export interface ChangeRecoveryAccountOperation extends Operation {
+export interface ChangeRecoveryAccountOperation extends RealOperation {
   0: 'change_recovery_account';
   1: {
     account_to_recover: string;
@@ -404,7 +404,7 @@ export interface ChangeRecoveryAccountOperation extends Operation {
   };
 }
 
-export interface EscrowTransferOperation extends Operation {
+export interface EscrowTransferOperation extends RealOperation {
   0: 'escrow_transfer';
   1: {
     from: string;
@@ -420,7 +420,7 @@ export interface EscrowTransferOperation extends Operation {
   };
 }
 
-export interface EscrowDisputeOperation extends Operation {
+export interface EscrowDisputeOperation extends RealOperation {
   0: 'escrow_dispute';
   1: {
     from: string;
@@ -431,7 +431,7 @@ export interface EscrowDisputeOperation extends Operation {
   };
 }
 
-export interface EscrowReleaseOperation extends Operation {
+export interface EscrowReleaseOperation extends RealOperation {
   0: 'escrow_release';
   1: {
     from: string;
@@ -445,7 +445,7 @@ export interface EscrowReleaseOperation extends Operation {
   };
 }
 
-export interface PowTwoOperation extends Operation {
+export interface PowTwoOperation extends RealOperation {
   0: 'pow2';
   1: {
     work: Array<{
@@ -463,7 +463,7 @@ export interface PowTwoOperation extends Operation {
   };
 }
 
-export interface EscrowApproveOperation extends Operation {
+export interface EscrowApproveOperation extends RealOperation {
   0: 'escrow_approve';
   1: {
     from: string;
@@ -475,7 +475,7 @@ export interface EscrowApproveOperation extends Operation {
   };
 }
 
-export interface TransferToSavingsOperation extends Operation {
+export interface TransferToSavingsOperation extends RealOperation {
   0: 'transfer_to_savings';
   1: {
     from: string;
@@ -485,7 +485,7 @@ export interface TransferToSavingsOperation extends Operation {
   };
 }
 
-export interface TransferFromSavingsOperation extends Operation {
+export interface TransferFromSavingsOperation extends RealOperation {
   0: 'transfer_from_savings';
   1: {
     from: string;
@@ -496,7 +496,7 @@ export interface TransferFromSavingsOperation extends Operation {
   };
 }
 
-export interface CancelTransferFromSavingsOperation extends Operation {
+export interface CancelTransferFromSavingsOperation extends RealOperation {
   0: 'cancel_transfer_from_savings';
   1: {
     from: string;
@@ -504,7 +504,7 @@ export interface CancelTransferFromSavingsOperation extends Operation {
   };
 }
 
-export interface CustomBinaryOperation extends Operation {
+export interface CustomBinaryOperation extends RealOperation {
   0: 'custom_binary';
   1: {
     id: string;
@@ -512,7 +512,7 @@ export interface CustomBinaryOperation extends Operation {
   };
 }
 
-export interface DeclineVotingRightsOperation extends Operation {
+export interface DeclineVotingRightsOperation extends RealOperation {
   0: 'decline_voting_rights';
   1: {
     account: string;
@@ -520,7 +520,7 @@ export interface DeclineVotingRightsOperation extends Operation {
   };
 }
 
-export interface ResetAccountOperation extends Operation {
+export interface ResetAccountOperation extends RealOperation {
   0: 'reset_account';
   1: {
     reset_account: string;
@@ -529,7 +529,7 @@ export interface ResetAccountOperation extends Operation {
   };
 }
 
-export interface SetResetAccountOperation extends Operation {
+export interface SetResetAccountOperation extends RealOperation {
   0: 'set_reset_account';
   1: {
     account: string;
@@ -538,7 +538,7 @@ export interface SetResetAccountOperation extends Operation {
   };
 }
 
-export interface ClaimRewardBalanceOperation extends Operation {
+export interface ClaimRewardBalanceOperation extends RealOperation {
   0: 'claim_reward_balance';
   1: {
     account: string;
@@ -548,7 +548,7 @@ export interface ClaimRewardBalanceOperation extends Operation {
   };
 }
 
-export interface DelegateVestingSharesOperation extends Operation {
+export interface DelegateVestingSharesOperation extends RealOperation {
   0: 'delegate_vesting_shares';
   1: {
     delegator: string;
@@ -557,7 +557,7 @@ export interface DelegateVestingSharesOperation extends Operation {
   };
 }
 
-export interface CreateAccountWithDelegationOperation extends Operation {
+export interface CreateAccountWithDelegationOperation extends RealOperation {
   0: 'account_create_with_delegation';
   1: {
     fee: Asset;
@@ -709,3 +709,5 @@ export interface ProducerRewardOperation extends VirtualOperation {
     vesting_shares: string;
   };
 }
+
+export type Operation = RealOperation | VirtualOperation;
