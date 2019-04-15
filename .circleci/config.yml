@@ -58,8 +58,6 @@ jobs:
             ./cc-test-reporter before-build
           when: always
 
-      - run: mkdir coverage
-
       - run:
           name: code-coverage
           command: |
