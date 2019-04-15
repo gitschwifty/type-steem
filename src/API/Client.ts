@@ -106,7 +106,7 @@ export class Client {
 
   /* istanbul ignore next */
   private APIRetry(opts: RequestInit, retry: number): Promise<APIResult> {
-    console.log('Retry #' + retry + ': ' + this.steemNode);
+    // console.log('Retry #' + retry + ': ' + this.steemNode);
     return new Promise((resolve, reject) => {
       fetch(this.steemNode, opts)
         .then(response => {
