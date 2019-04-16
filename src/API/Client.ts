@@ -100,15 +100,11 @@ export class Client {
     if (minOneKeys.includes(key)) {
       if (param < 1) {
         throw new Error('Parameter ' + key + ' must be >= 1.');
-      }
-
-      if (param > max) {
+      } else if (param > max) {
         throw new Error('Parameter ' + key + ' must be <= ' + max + '.');
       }
-    } else {
-      if (param < 0) {
-        throw new Error('Parameter ' + key + ' must be >= 0.');
-      }
+    } else if (param < 0) {
+      throw new Error('Parameter ' + key + ' must be >= 0.');
     }
   }
 
