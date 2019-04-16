@@ -10,9 +10,13 @@ export class CondenserAPI extends Client {
   }
 
   public getAccountHistory(account: string, start: number, limit: number) {
-    this.checkParams({ account, start, limit }, 10000);
+    this.checkParams({ account, limit }, 10000);
 
-    if (start < limit) {
+    if (start < -1 || start === 0) {
+      throw new Error('Start must be -1 or positive.');
+    }
+
+    if (start !== -1 && start < limit) {
       throw new Error('Start must be greater than limit.');
     }
 
@@ -30,7 +34,7 @@ export class CondenserAPI extends Client {
   }
 
   public getAccounts(accounts: string[]) {
-    this.checkStringArrParam({ accounts });
+    this.checkParams({ accounts });
 
     return this.callCondenserApi('get_accounts', [accounts]);
   }
@@ -48,7 +52,7 @@ export class CondenserAPI extends Client {
   }
 
   public lookupAccountNames(accounts: string[]) {
-    this.checkStringArrParam({ accounts });
+    this.checkParams({ accounts });
 
     return this.callCondenserApi('lookup_account_names', [accounts]);
   }

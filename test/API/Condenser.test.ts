@@ -27,14 +27,6 @@ describe('CondenserAPI', function() {
       }
     });
 
-    it('should throw incorrect index error', async () => {
-      try {
-        await condenserApi.getAccountHistory('petertag', -5, 5);
-      } catch (err) {
-        expect(err.message).to.equal('Parameter start must be >= 0.');
-      }
-    });
-
     it('should throw incorrect limit error', async () => {
       try {
         await condenserApi.getAccountHistory('petertag', 5, 15000);
@@ -43,9 +35,17 @@ describe('CondenserAPI', function() {
       }
     });
 
-    it('should throw start < limit error', async () => {
+    it('should throw invalid start error', async () => {
       try {
         await condenserApi.getAccountHistory('petertag', 0, 10);
+      } catch (err) {
+        expect(err.message).to.equal('Start must be -1 or positive.');
+      }
+    });
+
+    it('should throw invalid start error', async () => {
+      try {
+        await condenserApi.getAccountHistory('petertag', 5, 10);
       } catch (err) {
         expect(err.message).to.equal('Start must be greater than limit.');
       }

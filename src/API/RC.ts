@@ -6,7 +6,7 @@ export class RCAPI extends Client {
   }
 
   public findRCAccounts(accounts: string[]) {
-    this.checkStringArrParam({ accounts });
+    this.checkParams({ accounts });
 
     return this.callAppbaseApi(APIType.rc, 'find_rc_accounts', { accounts });
   }

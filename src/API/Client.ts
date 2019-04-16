@@ -1,5 +1,3 @@
-import { isArray } from 'util';
-
 export interface RPCCall {
   id: number | string;
   method: 'call';
@@ -45,6 +43,8 @@ const defaultOptions: ClientOptions = {
   retries: 3
 };
 
+const minOneKeys = ['limit', 'blockNum', 'bucketSeconds'];
+
 export class Client {
   private steemNode: string;
   private options: ClientOptions;
@@ -68,38 +68,46 @@ export class Client {
   }
 
   protected checkParams(
-    params: { [key: string]: string | number },
+    params: { [key: string]: string | number | string[] },
     max: number = 500
   ) {
     for (const key in params) {
-      if (typeof params[key] === 'string') {
-        if (!params[key]) {
-          throw new Error('String parameter ' + key + ' cannot be empty.');
-        }
+      if (Array.isArray(params[key])) {
+        this.checkStringArrParam(params[key] as string[], key);
+      } else if (typeof params[key] === 'string') {
+        this.checkStringParam(params[key] as string, key);
       } else {
-        if (key === 'limit' || key === 'blockNum') {
-          if (params[key] < 1) {
-            throw new Error('Parameter ' + key + ' must be >= 1.');
-          }
-
-          if (params[key] > max) {
-            throw new Error('Parameter ' + key + ' must be <= ' + max + '.');
-          }
-        } else {
-          if (params[key] < 0) {
-            throw new Error('Parameter ' + key + ' must be >= 0.');
-          }
-        }
+        this.checkNumberParam(params[key] as number, key, max);
       }
     }
   }
 
-  protected checkStringArrParam(params: { [key: string]: string[] }) {
-    for (const key in params) {
-      if (!params[key][0]) {
-        throw new Error(
-          'Must pass at least one non-empty string in array ' + key + '.'
-        );
+  protected checkStringArrParam(param: string[], key: string) {
+    if (!param[0]) {
+      throw new Error(
+        'Must pass at least one non-empty string in array ' + key + '.'
+      );
+    }
+  }
+
+  protected checkStringParam(param: string, key: string) {
+    if (!param) {
+      throw new Error('String parameter ' + key + ' cannot be empty.');
+    }
+  }
+
+  protected checkNumberParam(param: number, key: string, max: number) {
+    if (minOneKeys.includes(key)) {
+      if (param < 1) {
+        throw new Error('Parameter ' + key + ' must be >= 1.');
+      }
+
+      if (param > max) {
+        throw new Error('Parameter ' + key + ' must be <= ' + max + '.');
+      }
+    } else {
+      if (param < 0) {
+        throw new Error('Parameter ' + key + ' must be >= 0.');
       }
     }
   }
@@ -108,22 +116,7 @@ export class Client {
     method: string,
     params: unknown[] = []
   ): Promise<APIResult> {
-    const request: RPCCall = {
-      id: '0',
-      method: 'call',
-      jsonrpc: '2.0',
-      params: [APIType.cond, method, params]
-    };
-
-    const opts: RequestInit = {
-      body: JSON.stringify(request),
-      cache: 'no-cache',
-      headers: { 'User-Agent': 'type-steem' },
-      method: 'POST',
-      mode: 'cors'
-    };
-
-    return this.APIRetry(opts, 0);
+    return this.callAppbaseApi(APIType.cond, method, params);
   }
 
   public callAppbaseApi(
