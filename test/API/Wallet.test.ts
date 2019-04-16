@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { WalletAPI, APIType } from '../../dist';
+import { WalletAPI, APIType, Client } from '../../dist';
 import chai from 'chai';
 const expect = chai.expect;
 
@@ -9,25 +9,11 @@ describe('WalletAPI', function() {
   this.slow(3000);
   this.timeout(10000);
 
+  it('Should work passing in a client', () => {
+    const wapi = new WalletAPI(new Client('https://rpc.steemviz.com'));
+  });
+
   describe('Get vesting delegations', () => {
-    it('should throw no account error.', async () => {
-      try {
-        await walletApi.getVestingDelegations('', 10);
-      } catch (err) {
-        expect(err.message).to.equal(
-          'String parameter delegator cannot be empty.'
-        );
-      }
-    });
-
-    it('should throw invalid limit error.', async () => {
-      try {
-        await walletApi.getVestingDelegations('petertag', 0);
-      } catch (err) {
-        expect(err.message).to.equal('Parameter limit must be >= 1.');
-      }
-    });
-
     it('should return an array', async () => {
       const res = await walletApi.getVestingDelegations('petertag', 5);
       expect(res).to.be.instanceOf(Array);
@@ -35,16 +21,6 @@ describe('WalletAPI', function() {
   });
 
   describe('Get withdraw routes', () => {
-    it('should throw no account error.', async () => {
-      try {
-        await walletApi.getWithdrawRoutes('', 'all');
-      } catch (err) {
-        expect(err.message).to.equal(
-          'String parameter account cannot be empty.'
-        );
-      }
-    });
-
     it('should throw invalid type error.', async () => {
       try {
         await walletApi.getWithdrawRoutes('petertag', 'none');

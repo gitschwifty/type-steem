@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { MarketAPI, APIType } from '../../dist';
+import { MarketAPI, APIType, Client } from '../../dist';
 import chai from 'chai';
 const expect = chai.expect;
 
@@ -8,6 +8,10 @@ const marketApi = new MarketAPI();
 describe('MarketAPI', function() {
   this.slow(3000);
   this.timeout(10000);
+
+  it('Should work passing in a client', () => {
+    const mapi = new MarketAPI(new Client('https://rpc.steemviz.com'));
+  });
 
   describe('Get current median history price', () => {
     it('should return *.*** SBD to 1.000 STEEM', async () => {
@@ -53,14 +57,6 @@ describe('MarketAPI', function() {
       }
     });
 
-    it('should throw empty string error', async () => {
-      try {
-        await marketApi.getMarketHistory(60, '', '');
-      } catch (err) {
-        expect(err.message).to.equal('String parameter start cannot be empty.');
-      }
-    });
-
     it('should return an array', async () => {
       const res = await marketApi.getMarketHistory(
         60,
@@ -72,16 +68,6 @@ describe('MarketAPI', function() {
   });
 
   describe('Get open orders', () => {
-    it('should throw empty string error', async () => {
-      try {
-        await marketApi.getOpenOrders('');
-      } catch (err) {
-        expect(err.message).to.equal(
-          'String parameter account cannot be empty.'
-        );
-      }
-    });
-
     it('should return an array', async () => {
       const res = await marketApi.getOpenOrders('petertag');
       expect(res).to.be.instanceOf(Array);
@@ -89,14 +75,6 @@ describe('MarketAPI', function() {
   });
 
   describe('Get order book', () => {
-    it('should throw invalid limit error', async () => {
-      try {
-        await marketApi.getOrderBook(0);
-      } catch (err) {
-        expect(err.message).to.equal('Parameter limit must be >= 1.');
-      }
-    });
-
     it('should return an object', async () => {
       const res = await marketApi.getOrderBook(10);
       expect(res).to.be.instanceOf(Object);
@@ -104,14 +82,6 @@ describe('MarketAPI', function() {
   });
 
   describe('Get recent trades', () => {
-    it('should throw invalid limit error', async () => {
-      try {
-        await marketApi.getRecentTrades(0);
-      } catch (err) {
-        expect(err.message).to.equal('Parameter limit must be >= 1.');
-      }
-    });
-
     it('should return an array', async () => {
       const res = await marketApi.getRecentTrades(10);
       expect(res).to.be.instanceOf(Array);
@@ -130,26 +100,6 @@ describe('MarketAPI', function() {
   });
 
   describe('Get trade history', () => {
-    it('should throw an invalid limit error', async () => {
-      try {
-        await marketApi.getTradeHistory(
-          '2018-01-01T00:00:00',
-          '2018-01-02T00:00:00',
-          0
-        );
-      } catch (err) {
-        expect(err.message).to.equal('Parameter limit must be >= 1.');
-      }
-    });
-
-    it('should throw an invalid date error', async () => {
-      try {
-        await marketApi.getTradeHistory('', '', 5);
-      } catch (err) {
-        expect(err.message).to.equal('String parameter start cannot be empty.');
-      }
-    });
-
     it('should return an array', async () => {
       const res = await marketApi.getTradeHistory(
         '2018-01-01T00:00:00',

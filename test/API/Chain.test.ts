@@ -1,5 +1,10 @@
 import '@babel/polyfill';
-import { ChainAPI, ConfirmedTransaction, SignedTransaction } from '../../dist';
+import {
+  ChainAPI,
+  ConfirmedTransaction,
+  SignedTransaction,
+  Client
+} from '../../dist';
 import chai from 'chai';
 const expect = chai.expect;
 
@@ -10,14 +15,6 @@ describe('ChainAPI', function() {
   this.timeout(10000);
 
   describe('Get Block', () => {
-    it('Should throw < 1 error', async () => {
-      try {
-        await chainApi.getBlock(0);
-      } catch (err) {
-        expect(err.message).to.equal('Parameter blockNum must be >= 1.');
-      }
-    });
-
     it('Genesis block_id check', async () => {
       const res = await chainApi.getBlock(1);
       expect(res.hasOwnProperty('block_id')).to.be.equal(true);
@@ -32,14 +29,6 @@ describe('ChainAPI', function() {
   });
 
   describe('Get Block Header', () => {
-    it('Should throw < 1 error', async () => {
-      try {
-        await chainApi.getBlockHeader(0);
-      } catch (err) {
-        expect(err.message).to.equal('Parameter blockNum must be >= 1.');
-      }
-    });
-
     it('Genesis block miner === initminer', async () => {
       const res = await chainApi.getBlockHeader(1);
       if (res instanceof Object && !(res instanceof Array)) {
@@ -108,14 +97,6 @@ describe('ChainAPI', function() {
   });
 
   describe('Get ops in block', () => {
-    it('should throw block number < 1 error', async () => {
-      try {
-        await chainApi.getOpsInBlock(0, false);
-      } catch (err) {
-        expect(err.message).to.equal('Parameter blockNum must be >= 1.');
-      }
-    });
-
     it('should return genesis block with one transaction', async () => {
       const res = await chainApi.getOpsInBlock(1, false);
       expect(res).to.be.instanceOf(Array);
@@ -123,14 +104,6 @@ describe('ChainAPI', function() {
   });
 
   describe('Get reward funds', () => {
-    it('should throw empty string error', async () => {
-      try {
-        await chainApi.getRewardFund('');
-      } catch (err) {
-        expect(err.message).to.equal('String parameter type cannot be empty.');
-      }
-    });
-
     it('should return reward fund post', async () => {
       const res = await chainApi.getRewardFund('post');
       if (res instanceof Object && !(res instanceof Array)) {
@@ -143,16 +116,10 @@ describe('ChainAPI', function() {
   });
 
   describe('Get transaction', () => {
-    it('should throw no id error', async () => {
-      try {
-        await chainApi.getTransaction('');
-      } catch (err) {
-        expect(err.message).to.equal('String parameter trxId cannot be empty.');
-      }
-    });
-
     it('should return a transaction', async () => {
-      const accHisByKeyApi = new ChainAPI('https://rpc.steemviz.com');
+      const accHisByKeyApi = new ChainAPI(
+        new Client('https://rpc.steemviz.com')
+      );
       const res = await accHisByKeyApi.getTransaction(
         '6fde0190a97835ea6d9e651293e90c89911f933c'
       );

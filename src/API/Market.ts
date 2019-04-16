@@ -1,16 +1,18 @@
 import { Client, RPCCall, RPCResult, APIType, ClientOptions } from './Client';
+import { CheckParams } from '../Helpers/Utils';
 
-export class MarketAPI extends Client {
-  constructor(node?: string, options?: ClientOptions) {
-    super(node, options);
+export class MarketAPI {
+  private client: Client;
+  constructor(client?: Client) {
+    this.client = client ? client : new Client();
   }
 
   public getCurrentMedianHistoryPrice() {
-    return this.callCondenserApi('get_current_median_history_price');
+    return this.client.callCondenserApi('get_current_median_history_price');
   }
 
   public getFeedHistory() {
-    return this.callCondenserApi('get_feed_history');
+    return this.client.callCondenserApi('get_feed_history');
   }
 
   public getMarketHistory(bucketSeconds: number, start: string, end: string) {
@@ -18,9 +20,9 @@ export class MarketAPI extends Client {
       throw new Error('Bucket segments must be greater than 1 second.');
     }
 
-    this.checkParams({ start, end });
+    CheckParams({ start, end });
 
-    return this.callCondenserApi('get_market_history', [
+    return this.client.callCondenserApi('get_market_history', [
       bucketSeconds,
       start,
       end
@@ -28,34 +30,38 @@ export class MarketAPI extends Client {
   }
 
   public getOpenOrders(account: string) {
-    this.checkParams({ account });
+    CheckParams({ account });
 
-    return this.callCondenserApi('get_open_orders', [account]);
+    return this.client.callCondenserApi('get_open_orders', [account]);
   }
 
   public getOrderBook(limit: number) {
-    this.checkParams({ limit }, 500);
+    CheckParams({ limit }, 500);
 
-    return this.callCondenserApi('get_order_book', [limit]);
+    return this.client.callCondenserApi('get_order_book', [limit]);
   }
 
   public getRecentTrades(limit: number) {
-    this.checkParams({ limit }, 1000);
+    CheckParams({ limit }, 1000);
 
-    return this.callCondenserApi('get_recent_trades', [limit]);
+    return this.client.callCondenserApi('get_recent_trades', [limit]);
   }
 
   public getTicker() {
-    return this.callCondenserApi('get_ticker');
+    return this.client.callCondenserApi('get_ticker');
   }
 
   public getTradeHistory(start: string, end: string, limit: number) {
-    this.checkParams({ start, end, limit }, 1000);
+    CheckParams({ start, end, limit }, 1000);
 
-    return this.callCondenserApi('get_trade_history', [start, end, limit]);
+    return this.client.callCondenserApi('get_trade_history', [
+      start,
+      end,
+      limit
+    ]);
   }
 
   public getVolume() {
-    return this.callCondenserApi('get_volume');
+    return this.client.callCondenserApi('get_volume');
   }
 }

@@ -1,8 +1,10 @@
 import { Client, APIType, ClientOptions } from './Client';
+import { CheckParams } from '../Helpers/Utils';
 
-export class WalletAPI extends Client {
-  constructor(node?: string, options?: ClientOptions) {
-    super(node, options);
+export class WalletAPI {
+  private client: Client;
+  constructor(client?: Client) {
+    this.client = client ? client : new Client();
   }
 
   public getVestingDelegations(
@@ -10,9 +12,9 @@ export class WalletAPI extends Client {
     limit: number,
     startAccount?: string
   ) {
-    this.checkParams({ delegator, limit }, 1000);
+    CheckParams({ delegator, limit }, 1000);
 
-    return this.callCondenserApi('get_vesting_delegations', [
+    return this.client.callCondenserApi('get_vesting_delegations', [
       delegator,
       startAccount,
       limit
@@ -20,7 +22,7 @@ export class WalletAPI extends Client {
   }
 
   public getWithdrawRoutes(account: string, withdrawType: string) {
-    this.checkParams({ account });
+    CheckParams({ account });
 
     if (
       !withdrawType ||
@@ -33,7 +35,7 @@ export class WalletAPI extends Client {
       throw new Error('Type must be one of outgoing, incoming, or all.');
     }
 
-    return this.callCondenserApi('get_withdraw_routes', [
+    return this.client.callCondenserApi('get_withdraw_routes', [
       account,
       withdrawType
     ]);

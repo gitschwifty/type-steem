@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { RCAPI } from '../../dist';
+import { RCAPI, Client } from '../../dist';
 import chai from 'chai';
 const expect = chai.expect;
 
@@ -9,17 +9,11 @@ describe('RC API', function() {
   this.slow(5000);
   this.timeout(15000);
 
-  describe('Find RC Accounts', () => {
-    it('should throw no account error', async () => {
-      try {
-        await rcApi.findRCAccounts(['']);
-      } catch (err) {
-        expect(err.message).to.equal(
-          'Must pass at least one non-empty string in array accounts.'
-        );
-      }
-    });
+  it('Should work passing in a client', () => {
+    const rcapi = new RCAPI(new Client('https://rpc.steemviz.com'));
+  });
 
+  describe('Find RC Accounts', () => {
     it('should return rc accounts object', async () => {
       const res = await rcApi.findRCAccounts(['petertag']);
       expect(res).to.be.instanceOf(Object);

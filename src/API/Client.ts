@@ -1,3 +1,11 @@
+/**
+ * @file Base Client Class.
+ * @author Peter James Taggart <staggarts@gmail.com>
+ */
+
+/**
+ * Interface for calling the API (internal)
+ */
 export interface RPCCall {
   id: number | string;
   method: 'call';
@@ -5,12 +13,18 @@ export interface RPCCall {
   params: unknown[];
 }
 
+/**
+ * Interface for API result (internal).
+ */
 export interface RPCResult {
   id: number | string;
   jsonrpc: string;
   result: APIResult;
 }
 
+/**
+ * Type for API Result (external).
+ */
 export type APIResult =
   | number
   | string
@@ -19,10 +33,16 @@ export type APIResult =
   | number[]
   | string[];
 
+/**
+ * Generic object interface (I don't need this).
+ */
 export interface GenericObject {
   [key: string]: string | number | GenericObject | GenericObject[];
 }
 
+/**
+ * Possible APIs to call.
+ */
 export enum APIType {
   cond = 'condenser_api',
   db = 'database_api',
@@ -35,6 +55,9 @@ export enum APIType {
   witness = 'witness_api'
 }
 
+/**
+ * Options for the Client.
+ */
 export interface ClientOptions {
   retries: number;
 }
@@ -43,8 +66,10 @@ const defaultOptions: ClientOptions = {
   retries: 3
 };
 
-const minOneKeys = ['limit', 'blockNum', 'bucketSeconds'];
-
+/**
+ * Client class provides all API call functionality, returning a Promise with RPCResult,
+ * as well as retrying the API when calls fail.
+ */
 export class Client {
   private steemNode: string;
   private options: ClientOptions;
@@ -64,47 +89,6 @@ export class Client {
       };
     } else {
       this.options = defaultOptions;
-    }
-  }
-
-  protected checkParams(
-    params: { [key: string]: string | number | string[] },
-    max: number = 500
-  ) {
-    for (const key in params) {
-      if (Array.isArray(params[key])) {
-        this.checkStringArrParam(params[key] as string[], key);
-      } else if (typeof params[key] === 'string') {
-        this.checkStringParam(params[key] as string, key);
-      } else {
-        this.checkNumberParam(params[key] as number, key, max);
-      }
-    }
-  }
-
-  protected checkStringArrParam(param: string[], key: string) {
-    if (!param[0]) {
-      throw new Error(
-        'Must pass at least one non-empty string in array ' + key + '.'
-      );
-    }
-  }
-
-  protected checkStringParam(param: string, key: string) {
-    if (!param) {
-      throw new Error('String parameter ' + key + ' cannot be empty.');
-    }
-  }
-
-  protected checkNumberParam(param: number, key: string, max: number) {
-    if (minOneKeys.includes(key)) {
-      if (param < 1) {
-        throw new Error('Parameter ' + key + ' must be >= 1.');
-      } else if (param > max) {
-        throw new Error('Parameter ' + key + ' must be <= ' + max + '.');
-      }
-    } else if (param < 0) {
-      throw new Error('Parameter ' + key + ' must be >= 0.');
     }
   }
 

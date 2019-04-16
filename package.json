@@ -11,7 +11,7 @@
     "posttest": "rm -rf .nyc_output",
     "report": "nyc report",
     "lint": "tslint src/**/* -t junit -o ./reports/tslint/tslint.xml",
-    "doc": "typedoc --out ./doc --readme ./README.md ./src"
+    "doc": "typedoc --out ./doc --readme ./README.md --mode file --excludeNotExported"
   },
   "repository": {
     "type": "git",

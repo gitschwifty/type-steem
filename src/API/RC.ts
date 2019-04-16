@@ -1,21 +1,25 @@
 import { Client, APIType, ClientOptions } from './Client';
+import { CheckParams } from '../Helpers/Utils';
 
-export class RCAPI extends Client {
-  constructor(node?: string, options?: ClientOptions) {
-    super(node, options);
+export class RCAPI {
+  private client: Client;
+  constructor(client?: Client) {
+    this.client = client ? client : new Client();
   }
 
   public findRCAccounts(accounts: string[]) {
-    this.checkParams({ accounts });
+    CheckParams({ accounts });
 
-    return this.callAppbaseApi(APIType.rc, 'find_rc_accounts', { accounts });
+    return this.client.callAppbaseApi(APIType.rc, 'find_rc_accounts', {
+      accounts
+    });
   }
 
   public getResourceParams() {
-    return this.callAppbaseApi(APIType.rc, 'get_resource_params');
+    return this.client.callAppbaseApi(APIType.rc, 'get_resource_params');
   }
 
   public getResourcePool() {
-    return this.callAppbaseApi(APIType.rc, 'get_resource_pool');
+    return this.client.callAppbaseApi(APIType.rc, 'get_resource_pool');
   }
 }

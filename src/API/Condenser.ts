@@ -1,16 +1,18 @@
 import { Client, RPCCall, RPCResult, APIType, ClientOptions } from './Client';
+import { CheckParams } from '../Helpers/Utils';
 
-export class CondenserAPI extends Client {
-  constructor(node?: string, options?: ClientOptions) {
-    super(node, options);
+export class CondenserAPI {
+  private client: Client;
+  constructor(client?: Client) {
+    this.client = client ? client : new Client();
   }
 
   public getAccountCount() {
-    return this.callCondenserApi('get_account_count');
+    return this.client.callCondenserApi('get_account_count');
   }
 
   public getAccountHistory(account: string, start: number, limit: number) {
-    this.checkParams({ account, limit }, 10000);
+    CheckParams({ account, limit }, 10000);
 
     if (start < -1 || start === 0) {
       throw new Error('Start must be -1 or positive.');
@@ -20,7 +22,7 @@ export class CondenserAPI extends Client {
       throw new Error('Start must be greater than limit.');
     }
 
-    return this.callCondenserApi('get_account_history', [
+    return this.client.callCondenserApi('get_account_history', [
       account,
       start,
       limit
@@ -28,38 +30,44 @@ export class CondenserAPI extends Client {
   }
 
   public getAccountReputations(limit: number, account?: string) {
-    this.checkParams({ limit }, 10000);
+    CheckParams({ limit }, 10000);
 
-    return this.callCondenserApi('get_account_reputations', [account, limit]);
+    return this.client.callCondenserApi('get_account_reputations', [
+      account,
+      limit
+    ]);
   }
 
   public getAccounts(accounts: string[]) {
-    this.checkParams({ accounts });
+    CheckParams({ accounts });
 
-    return this.callCondenserApi('get_accounts', [accounts]);
+    return this.client.callCondenserApi('get_accounts', [accounts]);
   }
 
   public getContent(author: string, permlink: string) {
-    this.checkParams({ author, permlink });
+    CheckParams({ author, permlink });
 
-    return this.callCondenserApi('get_content', [author, permlink]);
+    return this.client.callCondenserApi('get_content', [author, permlink]);
   }
 
   public getContentReplies(author: string, permlink: string) {
-    this.checkParams({ author, permlink });
+    CheckParams({ author, permlink });
 
-    return this.callCondenserApi('get_content_replies', [author, permlink]);
+    return this.client.callCondenserApi('get_content_replies', [
+      author,
+      permlink
+    ]);
   }
 
   public lookupAccountNames(accounts: string[]) {
-    this.checkParams({ accounts });
+    CheckParams({ accounts });
 
-    return this.callCondenserApi('lookup_account_names', [accounts]);
+    return this.client.callCondenserApi('lookup_account_names', [accounts]);
   }
 
   public lookupAccounts(startName: string, limit: number) {
-    this.checkParams({ startName, limit }, 1000);
+    CheckParams({ startName, limit }, 1000);
 
-    return this.callCondenserApi('lookup_accounts', [startName, limit]);
+    return this.client.callCondenserApi('lookup_accounts', [startName, limit]);
   }
 }

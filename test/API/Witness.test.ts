@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { WitnessAPI } from '../../dist';
+import { WitnessAPI, Client } from '../../dist';
 import chai from 'chai';
 const expect = chai.expect;
 
@@ -8,6 +8,10 @@ const witnessApi = new WitnessAPI();
 describe('WitnessAPI', function() {
   this.slow(3000);
   this.timeout(10000);
+
+  it('Should work passing in a client', () => {
+    const wapi = new WitnessAPI(new Client('https://rpc.steemviz.com'));
+  });
 
   describe('Get active witnesses', () => {
     it('should return 21 witnesses', async () => {
@@ -20,15 +24,6 @@ describe('WitnessAPI', function() {
   });
 
   describe('Get witness by account', () => {
-    it('should throw no accounts error', async () => {
-      try {
-        await witnessApi.getWitnessByAccount('');
-      } catch (err) {
-        expect(err.message).to.equal(
-          'String parameter account cannot be empty.'
-        );
-      }
-    });
     it('should return petertag object', async () => {
       const res = await witnessApi.getWitnessByAccount('petertag');
       expect(res).to.be.instanceOf(Object);
@@ -65,14 +60,6 @@ describe('WitnessAPI', function() {
   });
 
   describe('Get witnesses by vote', () => {
-    it('should throw invalid limit error', async () => {
-      try {
-        await witnessApi.getWitnessesByVote(0);
-      } catch (err) {
-        expect(err.message).to.equal('Parameter limit must be >= 1.');
-      }
-    });
-
     it('should return a witness array', async () => {
       const res = await witnessApi.getWitnessesByVote(50);
       expect(res).to.be.instanceOf(Array);
@@ -80,24 +67,6 @@ describe('WitnessAPI', function() {
   });
 
   describe('Lookup witness accounts', () => {
-    it('should throw empty string error', async () => {
-      try {
-        await witnessApi.lookupWitnessAccounts('', 50);
-      } catch (err) {
-        expect(err.message).to.equal(
-          'String parameter startName cannot be empty.'
-        );
-      }
-    });
-
-    it('should throw invalid limit error', async () => {
-      try {
-        await witnessApi.lookupWitnessAccounts('peter', 0);
-      } catch (err) {
-        expect(err.message).to.equal('Parameter limit must be >= 1.');
-      }
-    });
-
     it('should return a witness array', async () => {
       const res = await witnessApi.lookupWitnessAccounts('peter', 50);
       expect(res).to.be.instanceOf(Array);
