@@ -10,7 +10,8 @@
     "test": "nyc mocha",
     "posttest": "rm -rf .nyc_output",
     "report": "nyc report",
-    "lint": "tslint src/**/* -t junit -o ./reports/tslint/tslint.xml"
+    "lint": "tslint src/**/* -t junit -o ./reports/tslint/tslint.xml",
+    "doc": "typedoc --out ./doc --readme ./README.md ./src"
   },
   "repository": {
     "type": "git",

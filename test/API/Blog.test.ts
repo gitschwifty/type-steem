@@ -148,9 +148,9 @@ describe('BlogAPI', function() {
     });
   });
 
-  describe('Get discussions by active', () => {
+  describe('Get discussions', () => {
     it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByActive({
+      const res = await blogApi.getDiscussions('active', {
         tag: 'steem',
         limit: 10,
         filterTags: [],
@@ -197,48 +197,6 @@ describe('BlogAPI', function() {
     });
   });
 
-  describe('Get discussions by blog', () => {
-    it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByBlog({
-        tag: 'petertag',
-        limit: 10,
-        filterTags: [],
-        selectAuthors: [],
-        selectTags: [],
-        truncateBody: 1
-      });
-      expect(res).to.instanceOf(Array);
-    });
-  });
-
-  describe('Get discussions by cashout', () => {
-    it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByCashout({
-        tag: 'utopian-io',
-        limit: 10,
-        filterTags: [],
-        selectAuthors: [],
-        selectTags: [],
-        truncateBody: 1
-      });
-      expect(res).to.be.instanceOf(Array);
-    });
-  });
-
-  describe('Get discussions by children', () => {
-    it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByChildren({
-        tag: 'steem',
-        limit: 10,
-        filterTags: [],
-        selectAuthors: [],
-        selectTags: [],
-        truncateBody: 1
-      });
-      expect(res).to.be.instanceOf(Array);
-    });
-  });
-
   describe('Get discussions by comments', () => {
     it('Should throw empty string error', async () => {
       try {
@@ -264,20 +222,6 @@ describe('BlogAPI', function() {
     });
   });
 
-  describe('Get discussions by created', () => {
-    it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByCreated({
-        tag: 'steem',
-        limit: 10,
-        filterTags: [],
-        selectAuthors: [],
-        selectTags: [],
-        truncateBody: 1
-      });
-      expect(res).to.instanceOf(Array);
-    });
-  });
-
   describe('Get discussions by feed', () => {
     it('Should throw empty string error', async () => {
       try {
@@ -297,62 +241,6 @@ describe('BlogAPI', function() {
 
     it('Should return an array', async () => {
       const res = await blogApi.getDiscussionsByFeed('petertag', 10);
-      expect(res).to.instanceOf(Array);
-    });
-  });
-
-  describe('Get discussions by hot', () => {
-    it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByHot({
-        tag: 'steem',
-        limit: 10,
-        filterTags: [],
-        selectAuthors: [],
-        selectTags: [],
-        truncateBody: 1
-      });
-      expect(res).to.instanceOf(Array);
-    });
-  });
-
-  describe('Get discussions by promoted', () => {
-    it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByPromoted({
-        tag: 'steem',
-        limit: 10,
-        filterTags: [],
-        selectAuthors: [],
-        selectTags: [],
-        truncateBody: 1
-      });
-      expect(res).to.instanceOf(Array);
-    });
-  });
-
-  describe('Get discussions by trending', () => {
-    it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByTrending({
-        tag: 'steem',
-        limit: 10,
-        filterTags: [],
-        selectAuthors: [],
-        selectTags: [],
-        truncateBody: 1
-      });
-      expect(res).to.instanceOf(Array);
-    });
-  });
-
-  describe('Get discussions by votes', () => {
-    it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByVotes({
-        tag: 'steem',
-        limit: 1,
-        filterTags: [],
-        selectAuthors: [],
-        selectTags: [],
-        truncateBody: 1
-      });
       expect(res).to.instanceOf(Array);
     });
   });

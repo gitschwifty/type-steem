@@ -9,6 +9,17 @@ export interface DiscussionFilter {
   truncateBody: number;
 }
 
+export type DiscussionSort =
+  | 'active'
+  | 'blog'
+  | 'cashout'
+  | 'children'
+  | 'created'
+  | 'hot'
+  | 'promoted'
+  | 'trending'
+  | 'votes';
+
 export class BlogAPI extends Client {
   constructor(node?: string, options?: ClientOptions) {
     super(node, options);
@@ -42,8 +53,8 @@ export class BlogAPI extends Client {
     return this.callCondenserApi('get_comment_discussions_by_payout', [filter]);
   }
 
-  public getDiscussionsByActive(filter: DiscussionFilter) {
-    return this.callCondenserApi('get_discussions_by_active', [filter]);
+  public getDiscussions(by: DiscussionSort, filter: DiscussionFilter) {
+    return this.callCondenserApi('get_discussions_by_' + by, [filter]);
   }
 
   public getDiscussionsByAuthorBeforeDate(
@@ -62,18 +73,6 @@ export class BlogAPI extends Client {
     ]);
   }
 
-  public getDiscussionsByBlog(filter: DiscussionFilter) {
-    return this.callCondenserApi('get_discussions_by_blog', [filter]);
-  }
-
-  public getDiscussionsByCashout(filter: DiscussionFilter) {
-    return this.callCondenserApi('get_discussions_by_cashout', [filter]);
-  }
-
-  public getDiscussionsByChildren(filter: DiscussionFilter) {
-    return this.callCondenserApi('get_discussions_by_children', [filter]);
-  }
-
   public getDiscussionsByComments(
     startAuthor: string,
     limit: number,
@@ -86,30 +85,10 @@ export class BlogAPI extends Client {
     ]);
   }
 
-  public getDiscussionsByCreated(filter: DiscussionFilter) {
-    return this.callCondenserApi('get_discussions_by_created', [filter]);
-  }
-
   public getDiscussionsByFeed(tag: string, limit: number) {
     this.checkParams({ tag, limit }, 500);
 
     return this.callCondenserApi('get_discussions_by_feed', [{ tag, limit }]);
-  }
-
-  public getDiscussionsByHot(filter: DiscussionFilter) {
-    return this.callCondenserApi('get_discussions_by_hot', [filter]);
-  }
-
-  public getDiscussionsByPromoted(filter: DiscussionFilter) {
-    return this.callCondenserApi('get_discussions_by_promoted', [filter]);
-  }
-
-  public getDiscussionsByTrending(filter: DiscussionFilter) {
-    return this.callCondenserApi('get_discussions_by_trending', [filter]);
-  }
-
-  public getDiscussionsByVotes(filter: DiscussionFilter) {
-    return this.callCondenserApi('get_discussions_by_votes', [filter]);
   }
 
   public getFeed(account: string, startId: number, limit: number) {
