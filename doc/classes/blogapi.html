@@ -68,12 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="client.html" class="tsd-signature-type">Client</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">BlogAPI</span>
-							</li>
-						</ul>
+						<span class="target">BlogAPI</span>
 					</li>
 				</ul>
 			</section>
@@ -84,18 +79,18 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="blogapi.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="blogapi.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="blogapi.html#client" class="tsd-kind-icon">client</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="blogapi.html#callappbaseapi" class="tsd-kind-icon">call<wbr>Appbase<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="blogapi.html#callcondenserapi" class="tsd-kind-icon">call<wbr>Condenser<wbr>Api</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="blogapi.html#checknumberparam" class="tsd-kind-icon">check<wbr>Number<wbr>Param</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="blogapi.html#checkparams" class="tsd-kind-icon">check<wbr>Params</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="blogapi.html#checkstringarrparam" class="tsd-kind-icon">check<wbr>String<wbr>Arr<wbr>Param</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="blogapi.html#checkstringparam" class="tsd-kind-icon">check<wbr>String<wbr>Param</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="blogapi.html#getactivevotes" class="tsd-kind-icon">get<wbr>Active<wbr>Votes</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="blogapi.html#getblog" class="tsd-kind-icon">get<wbr>Blog</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="blogapi.html#getblogauthors" class="tsd-kind-icon">get<wbr>Blog<wbr>Authors</a></li>
@@ -117,27 +112,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>BlogAPI<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/clientoptions.html" class="tsd-signature-type">ClientOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="blogapi.html" class="tsd-signature-type">BlogAPI</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>BlogAPI<span class="tsd-signature-symbol">(</span>client<span class="tsd-signature-symbol">?: </span><a href="client.html" class="tsd-signature-type">Client</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="blogapi.html" class="tsd-signature-type">BlogAPI</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="client.html">Client</a>.<a href="client.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L23">API/Blog.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L25">API/Blog.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> node: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/clientoptions.html" class="tsd-signature-type">ClientOptions</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> client: <a href="client.html" class="tsd-signature-type">Client</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="blogapi.html" class="tsd-signature-type">BlogAPI</a></h4>
@@ -145,181 +136,21 @@
 					</ul>
 				</section>
 			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="client" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> client</h3>
+					<div class="tsd-signature tsd-kind-icon">client<span class="tsd-signature-symbol">:</span> <a href="client.html" class="tsd-signature-type">Client</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L25">API/Blog.ts:25</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="callappbaseapi" class="tsd-anchor"></a>
-					<h3>call<wbr>Appbase<wbr>Api</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">call<wbr>Appbase<wbr>Api<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../enums/apitype.html" class="tsd-signature-type">APIType</a>, method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#apiresult" class="tsd-signature-type">APIResult</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="client.html">Client</a>.<a href="client.html#callappbaseapi">callAppbaseApi</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Client.ts#L145">API/Client.ts:145</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>api: <a href="../enums/apitype.html" class="tsd-signature-type">APIType</a></h5>
-								</li>
-								<li>
-									<h5>method: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> params: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#apiresult" class="tsd-signature-type">APIResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="callcondenserapi" class="tsd-anchor"></a>
-					<h3>call<wbr>Condenser<wbr>Api</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">call<wbr>Condenser<wbr>Api<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#apiresult" class="tsd-signature-type">APIResult</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="client.html">Client</a>.<a href="client.html#callcondenserapi">callCondenserApi</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Client.ts#L138">API/Client.ts:138</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>method: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> params: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#apiresult" class="tsd-signature-type">APIResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a name="checknumberparam" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> check<wbr>Number<wbr>Param</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>Number<wbr>Param<span class="tsd-signature-symbol">(</span>param<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, max<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="client.html">Client</a>.<a href="client.html#checknumberparam">checkNumberParam</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Client.ts#L126">API/Client.ts:126</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>param: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>key: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>max: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a name="checkparams" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> check<wbr>Params</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>Params<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, max<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="client.html">Client</a>.<a href="client.html#checkparams">checkParams</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Client.ts#L97">API/Client.ts:97</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>params: <span class="tsd-signature-type">object</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-index-signature">
-											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> max: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;500</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a name="checkstringarrparam" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> check<wbr>String<wbr>Arr<wbr>Param</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>String<wbr>Arr<wbr>Param<span class="tsd-signature-symbol">(</span>param<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="client.html">Client</a>.<a href="client.html#checkstringarrparam">checkStringArrParam</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Client.ts#L112">API/Client.ts:112</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>param: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5>key: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a name="checkstringparam" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> check<wbr>String<wbr>Param</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>String<wbr>Param<span class="tsd-signature-symbol">(</span>param<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="client.html">Client</a>.<a href="client.html#checkstringparam">checkStringParam</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Client.ts#L120">API/Client.ts:120</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>param: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>key: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getactivevotes" class="tsd-anchor"></a>
 					<h3>get<wbr>Active<wbr>Votes</h3>
@@ -330,7 +161,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L28">API/Blog.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L30">API/Blog.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -356,7 +187,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L34">API/Blog.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L36">API/Blog.ts:36</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -385,7 +216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L40">API/Blog.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L42">API/Blog.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -408,7 +239,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L46">API/Blog.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L48">API/Blog.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -437,7 +268,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L52">API/Blog.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L58">API/Blog.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -460,7 +291,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L56">API/Blog.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L64">API/Blog.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -486,7 +317,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L60">API/Blog.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L68">API/Blog.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -518,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L76">API/Blog.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L82">API/Blog.ts:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -547,7 +378,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L88">API/Blog.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L94">API/Blog.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -573,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L94">API/Blog.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L102">API/Blog.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -602,7 +433,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L100">API/Blog.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L108">API/Blog.ts:108</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -631,7 +462,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L106">API/Blog.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L118">API/Blog.ts:118</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -654,7 +485,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L112">API/Blog.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L124">API/Blog.ts:124</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -686,7 +517,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/85bbbd5/src/API/Blog.ts#L128">API/Blog.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Blog.ts#L140">API/Blog.ts:140</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -725,26 +556,11 @@
 					<li class="current tsd-kind-class">
 						<a href="blogapi.html" class="tsd-kind-icon">BlogAPI</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="blogapi.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="blogapi.html#callappbaseapi" class="tsd-kind-icon">call<wbr>Appbase<wbr>Api</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="blogapi.html#callcondenserapi" class="tsd-kind-icon">call<wbr>Condenser<wbr>Api</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="blogapi.html#checknumberparam" class="tsd-kind-icon">check<wbr>Number<wbr>Param</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="blogapi.html#checkparams" class="tsd-kind-icon">check<wbr>Params</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="blogapi.html#checkstringarrparam" class="tsd-kind-icon">check<wbr>String<wbr>Arr<wbr>Param</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="blogapi.html#checkstringparam" class="tsd-kind-icon">check<wbr>String<wbr>Param</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="blogapi.html#client" class="tsd-kind-icon">client</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="blogapi.html#getactivevotes" class="tsd-kind-icon">get<wbr>Active<wbr>Votes</a>
