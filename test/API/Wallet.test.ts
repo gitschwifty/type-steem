@@ -12,24 +12,24 @@ describe('WalletAPI', function() {
   describe('Get vesting delegations', () => {
     it('should throw no account error.', async () => {
       try {
-        await walletApi.getVestingDelegations('', null, 10);
+        await walletApi.getVestingDelegations('', 10);
       } catch (err) {
-        expect(err.message).to.equal('Must pass in a delegator account.');
+        expect(err.message).to.equal(
+          'String parameter delegator cannot be empty.'
+        );
       }
     });
 
     it('should throw invalid limit error.', async () => {
       try {
-        await walletApi.getVestingDelegations('petertag', null, 0);
+        await walletApi.getVestingDelegations('petertag', 0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 1000.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
     it('should return an array', async () => {
-      const res = await walletApi.getVestingDelegations('petertag', null, 5);
+      const res = await walletApi.getVestingDelegations('petertag', 5);
       expect(res).to.be.instanceOf(Array);
     });
   });
@@ -39,7 +39,9 @@ describe('WalletAPI', function() {
       try {
         await walletApi.getWithdrawRoutes('', 'all');
       } catch (err) {
-        expect(err.message).to.equal('Must pass in an account.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 

@@ -16,7 +16,7 @@ describe('Client', function() {
     it('should throw error with bad node', async () => {
       try {
         const client = new Client('blank');
-        await client.callApi(APIType.cond, 'get_account_count');
+        await client.callCondenserApi('get_account_count');
       } catch (err) {
         expect(err.message).to.equal('only absolute urls are supported');
       }
@@ -24,7 +24,7 @@ describe('Client', function() {
 
     it('should return > 1256360 with node & options specified', async () => {
       const client = new Client('https://api.steem.house', { retries: 5 });
-      const res = await client.callApi(APIType.cond, 'get_account_count');
+      const res = await client.callCondenserApi('get_account_count');
       expect(res).to.greaterThan(1256360);
     });
   });

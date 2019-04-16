@@ -7,18 +7,12 @@ export class WalletAPI extends Client {
 
   public getVestingDelegations(
     delegator: string,
-    startAccount: string | null,
-    limit: number
+    limit: number,
+    startAccount?: string
   ) {
-    if (!delegator) {
-      throw new Error('Must pass in a delegator account.');
-    }
+    this.checkParams({ delegator, limit }, 1000);
 
-    if (limit < 1 || limit > 1000) {
-      throw new Error('Limit must be positive and less than 1000.');
-    }
-
-    return this.callApi(APIType.cond, 'get_vesting_delegations', [
+    return this.callCondenserApi('get_vesting_delegations', [
       delegator,
       startAccount,
       limit
@@ -26,9 +20,7 @@ export class WalletAPI extends Client {
   }
 
   public getWithdrawRoutes(account: string, withdrawType: string) {
-    if (!account) {
-      throw new Error('Must pass in an account.');
-    }
+    this.checkParams({ account });
 
     if (
       !withdrawType ||
@@ -41,7 +33,7 @@ export class WalletAPI extends Client {
       throw new Error('Type must be one of outgoing, incoming, or all.');
     }
 
-    return this.callApi(APIType.cond, 'get_withdraw_routes', [
+    return this.callCondenserApi('get_withdraw_routes', [
       account,
       withdrawType
     ]);

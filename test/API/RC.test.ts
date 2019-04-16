@@ -14,7 +14,9 @@ describe('RC API', function() {
       try {
         await rcApi.findRCAccounts(['']);
       } catch (err) {
-        expect(err.message).to.equal('Must pass at least one account in.');
+        expect(err.message).to.equal(
+          'Must pass at least one non-empty string in array accounts.'
+        );
       }
     });
 

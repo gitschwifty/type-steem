@@ -1,3 +1,5 @@
+import { isArray } from 'util';
+
 export interface RPCCall {
   id: number | string;
   method: 'call';
@@ -65,8 +67,44 @@ export class Client {
     }
   }
 
-  public callApi(
-    api: APIType,
+  protected checkParams(
+    params: { [key: string]: string | number },
+    max: number = 500
+  ) {
+    for (const key in params) {
+      if (typeof params[key] === 'string') {
+        if (!params[key]) {
+          throw new Error('String parameter ' + key + ' cannot be empty.');
+        }
+      } else {
+        if (key === 'limit' || key === 'blockNum') {
+          if (params[key] < 1) {
+            throw new Error('Parameter ' + key + ' must be >= 1.');
+          }
+
+          if (params[key] > max) {
+            throw new Error('Parameter ' + key + ' must be <= ' + max + '.');
+          }
+        } else {
+          if (params[key] < 0) {
+            throw new Error('Parameter ' + key + ' must be >= 0.');
+          }
+        }
+      }
+    }
+  }
+
+  protected checkStringArrParam(params: { [key: string]: string[] }) {
+    for (const key in params) {
+      if (!params[key][0]) {
+        throw new Error(
+          'Must pass at least one non-empty string in array ' + key + '.'
+        );
+      }
+    }
+  }
+
+  public callCondenserApi(
     method: string,
     params: unknown[] = []
   ): Promise<APIResult> {
@@ -74,7 +112,7 @@ export class Client {
       id: '0',
       method: 'call',
       jsonrpc: '2.0',
-      params: [api, method, params]
+      params: [APIType.cond, method, params]
     };
 
     const opts: RequestInit = {

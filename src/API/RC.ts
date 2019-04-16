@@ -6,9 +6,7 @@ export class RCAPI extends Client {
   }
 
   public findRCAccounts(accounts: string[]) {
-    if (!accounts[0]) {
-      throw new Error('Must pass at least one account in.');
-    }
+    this.checkStringArrParam({ accounts });
 
     return this.callAppbaseApi(APIType.rc, 'find_rc_accounts', { accounts });
   }

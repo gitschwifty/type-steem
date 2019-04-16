@@ -24,7 +24,9 @@ describe('WitnessAPI', function() {
       try {
         await witnessApi.getWitnessByAccount('');
       } catch (err) {
-        expect(err.message).to.equal('Must pass in an account.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
     it('should return petertag object', async () => {
@@ -52,7 +54,7 @@ describe('WitnessAPI', function() {
       try {
         await witnessApi.getWitnesses([-1]);
       } catch (err) {
-        expect(err.message).to.equal('Index must be positive.');
+        expect(err.message).to.equal('Witness index must be positive.');
       }
     });
 
@@ -65,16 +67,14 @@ describe('WitnessAPI', function() {
   describe('Get witnesses by vote', () => {
     it('should throw invalid limit error', async () => {
       try {
-        await witnessApi.getWitnessesByVote(null, 0);
+        await witnessApi.getWitnessesByVote(0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 1000.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
     it('should return a witness array', async () => {
-      const res = await witnessApi.getWitnessesByVote(null, 50);
+      const res = await witnessApi.getWitnessesByVote(50);
       expect(res).to.be.instanceOf(Array);
     });
   });
@@ -84,7 +84,9 @@ describe('WitnessAPI', function() {
       try {
         await witnessApi.lookupWitnessAccounts('', 50);
       } catch (err) {
-        expect(err.message).to.equal('Start name must be non-empty.');
+        expect(err.message).to.equal(
+          'String parameter startName cannot be empty.'
+        );
       }
     });
 
@@ -92,9 +94,7 @@ describe('WitnessAPI', function() {
       try {
         await witnessApi.lookupWitnessAccounts('peter', 0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 1000.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 

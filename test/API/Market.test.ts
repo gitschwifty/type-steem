@@ -57,7 +57,7 @@ describe('MarketAPI', function() {
       try {
         await marketApi.getMarketHistory(60, '', '');
       } catch (err) {
-        expect(err.message).to.equal('Start and end times must be non-empty.');
+        expect(err.message).to.equal('String parameter start cannot be empty.');
       }
     });
 
@@ -76,7 +76,9 @@ describe('MarketAPI', function() {
       try {
         await marketApi.getOpenOrders('');
       } catch (err) {
-        expect(err.message).to.equal('Account must be non-empty string.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
@@ -91,9 +93,7 @@ describe('MarketAPI', function() {
       try {
         await marketApi.getOrderBook(0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 500.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
@@ -108,9 +108,7 @@ describe('MarketAPI', function() {
       try {
         await marketApi.getRecentTrades(0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 1000.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
@@ -134,11 +132,13 @@ describe('MarketAPI', function() {
   describe('Get trade history', () => {
     it('should throw an invalid limit error', async () => {
       try {
-        await marketApi.getTradeHistory('', '', 0);
-      } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 1000.'
+        await marketApi.getTradeHistory(
+          '2018-01-01T00:00:00',
+          '2018-01-02T00:00:00',
+          0
         );
+      } catch (err) {
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
@@ -146,7 +146,7 @@ describe('MarketAPI', function() {
       try {
         await marketApi.getTradeHistory('', '', 5);
       } catch (err) {
-        expect(err.message).to.equal('Start and end times must be non-empty.');
+        expect(err.message).to.equal('String parameter start cannot be empty.');
       }
     });
 

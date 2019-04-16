@@ -21,7 +21,9 @@ describe('CondenserAPI', function() {
       try {
         await condenserApi.getAccountHistory('', 0, 10);
       } catch (err) {
-        expect(err.message).to.equal('Account name must be passed.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
@@ -29,7 +31,7 @@ describe('CondenserAPI', function() {
       try {
         await condenserApi.getAccountHistory('petertag', -5, 5);
       } catch (err) {
-        expect(err.message).to.equal('Start index must be >= -1.');
+        expect(err.message).to.equal('Parameter start must be >= 0.');
       }
     });
 
@@ -37,9 +39,7 @@ describe('CondenserAPI', function() {
       try {
         await condenserApi.getAccountHistory('petertag', 5, 15000);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 10,000.'
-        );
+        expect(err.message).to.equal('Parameter limit must be <= 10000.');
       }
     });
 
@@ -60,16 +60,14 @@ describe('CondenserAPI', function() {
   describe('Get Account Reputations', () => {
     it('should throw incorrect limit error', async () => {
       try {
-        await condenserApi.getAccountReputations('petertag', 15000);
+        await condenserApi.getAccountReputations(15000, 'petertag');
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 1,000.'
-        );
+        expect(err.message).to.equal('Parameter limit must be <= 10000.');
       }
     });
 
     it('should return an array', async () => {
-      const res = await condenserApi.getAccountReputations('petertag', 10);
+      const res = await condenserApi.getAccountReputations(10);
       expect(res).to.be.instanceOf(Array);
     });
   });
@@ -79,7 +77,9 @@ describe('CondenserAPI', function() {
       try {
         await condenserApi.getAccounts(['']);
       } catch (err) {
-        expect(err.message).to.equal('Must pass at least one account name.');
+        expect(err.message).to.equal(
+          'Must pass at least one non-empty string in array accounts.'
+        );
       }
     });
     it('should return petertag account', async () => {
@@ -93,7 +93,9 @@ describe('CondenserAPI', function() {
       try {
         await condenserApi.getContent('', '');
       } catch (err) {
-        expect(err.message).to.equal('Author and permlink must be strings.');
+        expect(err.message).to.equal(
+          'String parameter author cannot be empty.'
+        );
       }
     });
 
@@ -110,7 +112,9 @@ describe('CondenserAPI', function() {
       try {
         await condenserApi.getContentReplies('', '');
       } catch (err) {
-        expect(err.message).to.equal('Author and permlink must be strings.');
+        expect(err.message).to.equal(
+          'String parameter author cannot be empty.'
+        );
       }
     });
 
@@ -128,7 +132,9 @@ describe('CondenserAPI', function() {
       try {
         await condenserApi.lookupAccountNames(['']);
       } catch (err) {
-        expect(err.message).to.equal('Must pass at least one account name.');
+        expect(err.message).to.equal(
+          'Must pass at least one non-empty string in array accounts.'
+        );
       }
     });
 
@@ -143,7 +149,9 @@ describe('CondenserAPI', function() {
       try {
         await condenserApi.lookupAccounts('', 5);
       } catch (err) {
-        expect(err.message).to.equal('Start name must be non-empty.');
+        expect(err.message).to.equal(
+          'String parameter startName cannot be empty.'
+        );
       }
     });
 
@@ -151,9 +159,7 @@ describe('CondenserAPI', function() {
       try {
         await condenserApi.lookupAccounts('a', 0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 1000.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 

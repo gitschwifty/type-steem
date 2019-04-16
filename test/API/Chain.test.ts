@@ -14,7 +14,7 @@ describe('ChainAPI', function() {
       try {
         await chainApi.getBlock(0);
       } catch (err) {
-        expect(err.message).to.equal('Block number must be greater than 0.');
+        expect(err.message).to.equal('Parameter blockNum must be >= 1.');
       }
     });
 
@@ -36,7 +36,7 @@ describe('ChainAPI', function() {
       try {
         await chainApi.getBlockHeader(0);
       } catch (err) {
-        expect(err.message).to.equal('Block number must be greater than 0.');
+        expect(err.message).to.equal('Parameter blockNum must be >= 1.');
       }
     });
 
@@ -112,7 +112,7 @@ describe('ChainAPI', function() {
       try {
         await chainApi.getOpsInBlock(0, false);
       } catch (err) {
-        expect(err.message).to.equal('Block number must be positive.');
+        expect(err.message).to.equal('Parameter blockNum must be >= 1.');
       }
     });
 
@@ -127,7 +127,7 @@ describe('ChainAPI', function() {
       try {
         await chainApi.getRewardFund('');
       } catch (err) {
-        expect(err.message).to.equal('Type must be non-empty string.');
+        expect(err.message).to.equal('String parameter type cannot be empty.');
       }
     });
 
@@ -147,7 +147,7 @@ describe('ChainAPI', function() {
       try {
         await chainApi.getTransaction('');
       } catch (err) {
-        expect(err.message).to.equal('Must pass in a transaction ID.');
+        expect(err.message).to.equal('String parameter trxId cannot be empty.');
       }
     });
 

@@ -14,7 +14,9 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getActiveVotes('', '');
       } catch (err) {
-        expect(err.message).to.equal('Must pass an author and permlink.');
+        expect(err.message).to.equal(
+          'String parameter author cannot be empty.'
+        );
       }
     });
 
@@ -32,7 +34,9 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getBlog('', 0, 10);
       } catch (err) {
-        expect(err.message).to.equal('Must pass an account name.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
@@ -40,7 +44,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getBlog('petertag', -1, 10);
       } catch (err) {
-        expect(err.message).to.equal('Start id cannot be negative.');
+        expect(err.message).to.equal('Parameter startId must be >= 0.');
       }
     });
 
@@ -48,7 +52,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getBlog('petertag', 0, 0);
       } catch (err) {
-        expect(err.message).to.equal('Limit must be greater than 0.');
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
@@ -56,9 +60,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getBlog('petertag', 0, 501);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be less than or equal to 500.'
-        );
+        expect(err.message).to.equal('Parameter limit must be <= 500.');
       }
     });
 
@@ -78,7 +80,9 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getBlogAuthors('');
       } catch (err) {
-        expect(err.message).to.equal('Must pass an account name.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
@@ -93,7 +97,9 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getBlogEntries('', 0, 10);
       } catch (err) {
-        expect(err.message).to.equal('Must pass an account name.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
@@ -101,7 +107,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getBlogEntries('petertag', -1, 10);
       } catch (err) {
-        expect(err.message).to.equal('Start id cannot be negative.');
+        expect(err.message).to.equal('Parameter startId must be >= 0.');
       }
     });
 
@@ -109,7 +115,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getBlogEntries('petertag', 0, 0);
       } catch (err) {
-        expect(err.message).to.equal('Limit must be greater than 0.');
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
@@ -117,9 +123,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getBlogEntries('petertag', 0, 501);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be less than or equal to 500.'
-        );
+        expect(err.message).to.equal('Parameter limit must be <= 500.');
       }
     });
 
@@ -164,7 +168,7 @@ describe('BlogAPI', function() {
         await blogApi.getDiscussionsByAuthorBeforeDate('', '', '', 1);
       } catch (err) {
         expect(err.message).to.equal(
-          'Author, permlink, and date must be strings.'
+          'String parameter author cannot be empty.'
         );
       }
     });
@@ -178,7 +182,7 @@ describe('BlogAPI', function() {
           0
         );
       } catch (err) {
-        expect(err.message).to.equal('Limit must be positive.');
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
@@ -238,36 +242,24 @@ describe('BlogAPI', function() {
   describe('Get discussions by comments', () => {
     it('Should throw empty string error', async () => {
       try {
-        await blogApi.getDiscussionsByComments({
-          start_author: '',
-          start_permlink: '',
-          limit: 10
-        });
+        await blogApi.getDiscussionsByComments('', 10);
       } catch (err) {
-        expect(err.message).to.equal('Author must be non-empty string.');
+        expect(err.message).to.equal(
+          'String parameter startAuthor cannot be empty.'
+        );
       }
     });
 
     it('Should throw bad limit error', async () => {
       try {
-        await blogApi.getDiscussionsByComments({
-          start_author: 'petertag',
-          start_permlink: null,
-          limit: 0
-        });
+        await blogApi.getDiscussionsByComments('petertag', 0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 500.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
     it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByComments({
-        start_author: 'petertag',
-        start_permlink: null,
-        limit: 10
-      });
+      const res = await blogApi.getDiscussionsByComments('petertag', 10);
       expect(res).to.instanceOf(Array);
     });
   });
@@ -289,33 +281,22 @@ describe('BlogAPI', function() {
   describe('Get discussions by feed', () => {
     it('Should throw empty string error', async () => {
       try {
-        await blogApi.getDiscussionsByFeed({
-          tag: '',
-          limit: 10
-        });
+        await blogApi.getDiscussionsByFeed('', 10);
       } catch (err) {
-        expect(err.message).to.equal('Tag must be a string.');
+        expect(err.message).to.equal('String parameter tag cannot be empty.');
       }
     });
 
     it('Should throw bad limit error', async () => {
       try {
-        await blogApi.getDiscussionsByFeed({
-          tag: 'petertag',
-          limit: 0
-        });
+        await blogApi.getDiscussionsByFeed('petertag', 0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 500.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
     it('Should return an array', async () => {
-      const res = await blogApi.getDiscussionsByFeed({
-        tag: 'petertag',
-        limit: 10
-      });
+      const res = await blogApi.getDiscussionsByFeed('petertag', 10);
       expect(res).to.instanceOf(Array);
     });
   });
@@ -366,7 +347,7 @@ describe('BlogAPI', function() {
     it('Should return an array', async () => {
       const res = await blogApi.getDiscussionsByVotes({
         tag: 'steem',
-        limit: 10,
+        limit: 1,
         filterTags: [],
         selectAuthors: [],
         selectTags: [],
@@ -381,7 +362,9 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getFeed('', 0, 10);
       } catch (err) {
-        expect(err.message).to.equal('Must pass an account name.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
@@ -389,7 +372,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getFeed('petertag', -1, 10);
       } catch (err) {
-        expect(err.message).to.equal('Start id cannot be negative.');
+        expect(err.message).to.equal('Parameter startId must be >= 0.');
       }
     });
 
@@ -397,7 +380,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getFeed('petertag', 0, 0);
       } catch (err) {
-        expect(err.message).to.equal('Limit must be greater than 0.');
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
@@ -405,9 +388,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getFeed('petertag', 0, 501);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be less than or equal to 500.'
-        );
+        expect(err.message).to.equal('Parameter limit must be <= 500.');
       }
     });
 
@@ -422,7 +403,9 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getFeedEntries('', 0, 10);
       } catch (err) {
-        expect(err.message).to.equal('Must pass an account name.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
@@ -430,7 +413,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getFeedEntries('petertag', -1, 10);
       } catch (err) {
-        expect(err.message).to.equal('Start id cannot be negative.');
+        expect(err.message).to.equal('Parameter startId must be >= 0.');
       }
     });
 
@@ -438,7 +421,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getFeedEntries('petertag', 0, 0);
       } catch (err) {
-        expect(err.message).to.equal('Limit must be greater than 0.');
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
@@ -446,9 +429,7 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getFeedEntries('petertag', 0, 501);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be less than or equal to 500.'
-        );
+        expect(err.message).to.equal('Parameter limit must be <= 500.');
       }
     });
 
@@ -463,7 +444,9 @@ describe('BlogAPI', function() {
       try {
         await blogApi.getFollowCount('');
       } catch (err) {
-        expect(err.message).to.equal('Account must be a string.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
@@ -481,24 +464,24 @@ describe('BlogAPI', function() {
   describe('Get followers', () => {
     it('should throw empty string error', async () => {
       try {
-        await blogApi.getFollowers('', '', 'blog', 10);
+        await blogApi.getFollowers('', 'blog', 10);
       } catch (err) {
-        expect(err.message).to.equal('Account and type must be strings.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
     it('should throw limit out of range error', async () => {
       try {
-        await blogApi.getFollowers('petertag', '', 'blog', 0);
+        await blogApi.getFollowers('petertag', 'blog', 0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 1000.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
     it('should return an array of followers', async () => {
-      const res = await blogApi.getFollowers('petertag', '', 'blog', 10);
+      const res = await blogApi.getFollowers('petertag', 'blog', 10);
       expect(res).to.instanceOf(Array);
     });
   });
@@ -506,24 +489,24 @@ describe('BlogAPI', function() {
   describe('Get following', () => {
     it('should throw empty string error', async () => {
       try {
-        await blogApi.getFollowing('', '', 'blog', 10);
+        await blogApi.getFollowing('', 'blog', 10);
       } catch (err) {
-        expect(err.message).to.equal('Account and type must be strings.');
+        expect(err.message).to.equal(
+          'String parameter account cannot be empty.'
+        );
       }
     });
 
     it('should throw limit out of range error', async () => {
       try {
-        await blogApi.getFollowing('petertag', '', 'blog', 0);
+        await blogApi.getFollowing('petertag', 'blog', 0);
       } catch (err) {
-        expect(err.message).to.equal(
-          'Limit must be positive and less than 1000.'
-        );
+        expect(err.message).to.equal('Parameter limit must be >= 1.');
       }
     });
 
     it('should return an array of following', async () => {
-      const res = await blogApi.getFollowing('petertag', '', 'blog', 10);
+      const res = await blogApi.getFollowing('petertag', 'blog', 10);
       expect(res).to.instanceOf(Array);
     });
   });
