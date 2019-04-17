@@ -15,7 +15,8 @@
     "resolveJsonModule": true,
     "noEmit": false,
     "sourceMap": true,
-    "declaration": true
+    "declaration": true,
+    "incremental": true
   },
   "include": ["src/**/*"]
 }

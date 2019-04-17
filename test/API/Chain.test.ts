@@ -1,10 +1,5 @@
 import '@babel/polyfill';
-import {
-  ChainAPI,
-  ConfirmedTransaction,
-  SignedTransaction,
-  Client
-} from '../../dist';
+import { ChainAPI, Client } from '../../dist';
 import chai from 'chai';
 const expect = chai.expect;
 

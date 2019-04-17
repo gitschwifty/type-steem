@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { CheckParams } from '../../dist';
+import { CheckParams, TestType, SignedBlock } from '../../dist';
 import chai from 'chai';
 const expect = chai.expect;
 

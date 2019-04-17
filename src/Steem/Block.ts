@@ -1,6 +1,6 @@
 export interface UnsignedBlock {
   previous: string;
-  timestamp: Date;
+  timestamp: string;
   witness: string;
   transaction_merkle_root: string;
   extensions: unknown[];

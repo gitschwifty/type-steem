@@ -1,3 +1,5 @@
+import { SignedBlock, UnsignedBlock } from '../Steem/Block';
+
 /**
  * @file Base Client Class.
  * @author Peter James Taggart <staggarts@gmail.com>
@@ -31,7 +33,9 @@ export type APIResult =
   | GenericObject
   | GenericObject[]
   | number[]
-  | string[];
+  | string[]
+  | SignedBlock
+  | UnsignedBlock;
 
 /**
  * Generic object interface (I don't need this).
@@ -92,18 +96,11 @@ export class Client {
     }
   }
 
-  public callCondenserApi(
-    method: string,
-    params: unknown[] = []
-  ): Promise<APIResult> {
-    return this.callAppbaseApi(APIType.cond, method, params);
+  public callCondenserApi<T>(method: string, params: unknown[] = []) {
+    return this.callAppbaseApi<T>(APIType.cond, method, params);
   }
 
-  public callAppbaseApi(
-    api: APIType,
-    method: string,
-    params: unknown = {}
-  ): Promise<APIResult> {
+  public callAppbaseApi<T>(api: APIType, method: string, params: unknown = {}) {
     const request: RPCCall = {
       id: '0',
       method: 'call',
@@ -119,11 +116,11 @@ export class Client {
       mode: 'cors'
     };
 
-    return this.APIRetry(opts, 0);
+    return this.APIRetry<T>(opts, 0);
   }
 
   /* istanbul ignore next */
-  private APIRetry(opts: RequestInit, retry: number): Promise<APIResult> {
+  private APIRetry<T>(opts: RequestInit, retry: number): Promise<T> {
     // console.log('Retry #' + retry + ': ' + this.steemNode);
     return new Promise((resolve, reject) => {
       fetch(this.steemNode, opts)
@@ -132,7 +129,7 @@ export class Client {
         })
         .then(json => {
           if (json.result) {
-            resolve(json.result);
+            resolve(json.result as T);
           } else if (retry < this.options.retries) {
             resolve(this.APIRetry(opts, retry + 1));
           } else {

@@ -1,6 +1,6 @@
 import { Client, APIResult, APIType, ClientOptions } from './Client';
 import { SignedBlock } from '../Steem/Block';
-import { Transaction, SignedTransaction } from '../Steem/Transaction';
+import { Trx, SignedTrx, ConfirmedTrx } from '../Steem/Transaction';
 
 export class BroadcastAPI {
   private client: Client;
@@ -8,10 +8,10 @@ export class BroadcastAPI {
     this.client = client ? client : new Client();
   }
 
-  public broadcastTransaction(trx: SignedTransaction, sync: boolean = false) {
+  public broadcastTransaction(trx: SignedTrx, sync: boolean = false) {
     const method = sync
       ? 'broadcast_transaction_synchronous'
       : 'broadcast_transaction';
-    return this.client.callCondenserApi(method, [trx]);
+    return this.client.callCondenserApi<ConfirmedTrx>(method, [trx]);
   }
 }
