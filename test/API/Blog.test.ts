@@ -128,14 +128,12 @@ describe('BlogAPI', function() {
 
   describe('Get followers', () => {
     it('should return an array of followers', async () => {
-      const res = await blogApi.getFollowers('petertag', 'blog', 10);
+      const res = await blogApi.getFollows('petertag', 'blog', 10, false);
       expect(res).to.instanceOf(Array);
     });
-  });
 
-  describe('Get following', () => {
     it('should return an array of following', async () => {
-      const res = await blogApi.getFollowing('petertag', 'blog', 10);
+      const res = await blogApi.getFollows('petertag', 'blog', 10);
       expect(res).to.instanceOf(Array);
     });
   });

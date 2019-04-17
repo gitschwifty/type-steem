@@ -259,31 +259,17 @@ export class BlogAPI {
     }>('get_follow_count', [account]);
   }
 
-  public getFollowers(
+  public getFollows(
     account: string,
     type: string,
     limit: number,
+    following: boolean = true,
     start?: string
   ) {
     CheckParams({ account, type, limit }, 1000);
+    const method = following ? 'get_following' : 'get_followers';
 
-    return this.client.callCondenserApi<Follower[]>('get_followers', [
-      account,
-      start,
-      type,
-      limit
-    ]);
-  }
-
-  public getFollowing(
-    account: string,
-    type: string,
-    limit: number,
-    start?: string
-  ) {
-    CheckParams({ account, type, limit }, 1000);
-
-    return this.client.callCondenserApi<Follower[]>('get_following', [
+    return this.client.callCondenserApi<Follower[]>(method, [
       account,
       start,
       type,
