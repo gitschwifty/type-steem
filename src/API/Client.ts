@@ -1,8 +1,6 @@
-import { SignedBlock, UnsignedBlock } from '../Steem/Block';
-
 /**
  * @file Base Client Class.
- * @author Peter James Taggart <staggarts@gmail.com>
+ * @author Peter James Taggart <code@pjtaggart.com>
  */
 
 /**
@@ -13,35 +11,6 @@ export interface RPCCall {
   method: 'call';
   jsonrpc: '2.0';
   params: unknown[];
-}
-
-/**
- * Interface for API result (internal).
- */
-export interface RPCResult {
-  id: number | string;
-  jsonrpc: string;
-  result: APIResult;
-}
-
-/**
- * Type for API Result (external).
- */
-export type APIResult =
-  | number
-  | string
-  | GenericObject
-  | GenericObject[]
-  | number[]
-  | string[]
-  | SignedBlock
-  | UnsignedBlock;
-
-/**
- * Generic object interface (I don't need this).
- */
-export interface GenericObject {
-  [key: string]: string | number | GenericObject | GenericObject[];
 }
 
 /**
@@ -72,12 +41,13 @@ const defaultOptions: ClientOptions = {
 
 /**
  * Client class provides all API call functionality, returning a Promise with RPCResult,
- * as well as retrying the API when calls fail.
+ * as well as retrying the API when calls fail. Constructor has optional node to use
+ * and options object
  */
 export class Client {
-  private steemNode: string;
-  private options: ClientOptions;
-  constructor(node?: string, options?: ClientOptions) {
+  public readonly steemNode: string;
+  public options: ClientOptions;
+  constructor(node?: string, options?: Partial<ClientOptions>) {
     if (node) {
       this.steemNode = node;
     } else {
@@ -86,10 +56,9 @@ export class Client {
     }
 
     if (options) {
-      this.options = options;
       this.options = {
-        ...this.options,
-        ...defaultOptions
+        ...defaultOptions,
+        ...options
       };
     } else {
       this.options = defaultOptions;
@@ -119,9 +88,7 @@ export class Client {
     return this.APIRetry<T>(opts, 0);
   }
 
-  /* istanbul ignore next */
   private APIRetry<T>(opts: RequestInit, retry: number): Promise<T> {
-    // console.log('Retry #' + retry + ': ' + this.steemNode);
     return new Promise((resolve, reject) => {
       fetch(this.steemNode, opts)
         .then(response => {
@@ -130,7 +97,7 @@ export class Client {
         .then(json => {
           if (json.result) {
             resolve(json.result as T);
-          } else if (retry < this.options.retries) {
+          } /* istanbul ignore next */ else if (retry < this.options.retries) {
             resolve(this.APIRetry(opts, retry + 1));
           } else {
             reject(json.error);

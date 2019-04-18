@@ -1,6 +1,6 @@
 /**
  * @file Utility functions.
- * @author Peter James Taggart <staggarts@gmail.com>
+ * @author Peter James Taggart <code@pjtaggart.com>
  */
 
 const minOneKeys = ['limit', 'blockNum', 'bucketSeconds'];

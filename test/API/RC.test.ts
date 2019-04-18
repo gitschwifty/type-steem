@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { RCAPI, Client } from '../../dist';
+import { RCAPI, Client } from '../../src';
 import chai from 'chai';
 const expect = chai.expect;
 

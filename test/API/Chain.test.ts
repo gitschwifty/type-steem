@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { ChainAPI, Client } from '../../dist';
+import { ChainAPI, Operation, Client } from '../../src';
 import chai from 'chai';
 const expect = chai.expect;
 
@@ -13,87 +13,62 @@ describe('ChainAPI', function() {
     it('Genesis block_id check', async () => {
       const res = await chainApi.getBlock(1);
       expect(res.hasOwnProperty('block_id')).to.be.equal(true);
-      if (res instanceof Object && !(res instanceof Array)) {
-        expect(res.block_id).to.equal(
-          '0000000109833ce528d5bbfb3f6225b39ee10086'
-        );
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res.block_id).to.equal('0000000109833ce528d5bbfb3f6225b39ee10086');
     });
   });
 
   describe('Get Block Header', () => {
     it('Genesis block miner === initminer', async () => {
       const res = await chainApi.getBlockHeader(1);
-      if (res instanceof Object && !(res instanceof Array)) {
-        expect(res.witness).to.equal('initminer');
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res.witness).to.equal('initminer');
     });
   });
 
   describe('Get chain properties', () => {
     it('Max block size === 65536', async () => {
       const res = await chainApi.getChainProperties();
-      if (res instanceof Object && !(res instanceof Array)) {
-        expect(res.maximum_block_size).to.equal(65536);
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res.maximum_block_size).to.equal(65536);
     });
   });
 
   describe('Get dynamic global properties', () => {
     it('Max block size === 65536', async () => {
       const res = await chainApi.getDynamicGlobalProperties();
-      if (res instanceof Object && !(res instanceof Array)) {
-        expect(res.maximum_block_size).to.equal(65536);
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res.maximum_block_size).to.equal(65536);
     });
   });
 
   describe('Get config', () => {
     it('Steem_Chain_Id === (0 >> 63)', async () => {
       const res = await chainApi.getConfig();
-      if (res instanceof Object && !(res instanceof Array)) {
-        expect(res.STEEM_CHAIN_ID).to.equal(
-          '0000000000000000000000000000000000000000000000000000000000000000'
-        );
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res.STEEM_CHAIN_ID).to.equal(
+        '0000000000000000000000000000000000000000000000000000000000000000'
+      );
     });
   });
 
   describe('Get hardfork version', () => {
     it('hardfork_version === *.**.*', async () => {
       const res = await chainApi.getHardforkVersion();
-      if (typeof res === 'string') {
-        expect(res).to.match(/([0-9]\.[0-9]{2}\.[0-9])/);
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res).to.match(/([0-9]\.[0-9]{2}\.[0-9])/);
     });
   });
 
   describe('Get next scheduled hardfork', () => {
     it('next scheduled === *.**.*', async () => {
       const res = await chainApi.getNextScheduledHardfork();
-      if (res instanceof Object && !(res instanceof Array)) {
-        expect(res.hf_version).to.match(/([0-9]\.[0-9]{2}\.[0-9])/);
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res.hf_version).to.match(/([0-9]\.[0-9]{2}\.[0-9])/);
     });
   });
 
   describe('Get ops in block', () => {
     it('should return genesis block with one transaction', async () => {
-      const res = await chainApi.getOpsInBlock(1, false);
+      const res = await chainApi.getOpsInBlock(1);
+      expect(res).to.be.instanceOf(Array);
+    });
+
+    it('should return genesis block with one transaction', async () => {
+      const res = await chainApi.getOpsInBlock(1, true);
       expect(res).to.be.instanceOf(Array);
     });
   });
@@ -101,12 +76,8 @@ describe('ChainAPI', function() {
   describe('Get reward funds', () => {
     it('should return reward fund post', async () => {
       const res = await chainApi.getRewardFund('post');
-      if (res instanceof Object && !(res instanceof Array)) {
-        expect(res.id).to.equal(0);
-        expect(res.name).to.equal('post');
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res.id).to.equal(0);
+      expect(res.name).to.equal('post');
     });
   });
 
@@ -118,11 +89,7 @@ describe('ChainAPI', function() {
       const res = await accHisByKeyApi.getTransaction(
         '6fde0190a97835ea6d9e651293e90c89911f933c'
       );
-      if (res instanceof Object && !(res instanceof Array)) {
-        expect(res.ref_block_num).to.equal(36374);
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res.ref_block_num).to.equal(36374);
     });
   });
 
@@ -141,7 +108,7 @@ describe('ChainAPI', function() {
               reward_sbd: '0.000 SBD',
               reward_vests: '0.000001 VESTS'
             }
-          ]
+          ] as Operation
         ],
         extensions: [],
         signatures: [
@@ -152,19 +119,18 @@ describe('ChainAPI', function() {
         transaction_num: 25
       };
 
+      const hexRes =
+        '168ecbe8d0bfd2b3ca5a012706736f6369616c000000000000000003535445454d0000000000000000000003534244000000000100000000000000065645535453000000011b01bdbb0c0d43db821c09ae8a82881c1ce3ba0eca35f23bc06541eca05560742f210a21243e20d04d5c88cb977abf2d75cc088db0fff2ca9fdf2cba753cf69844';
+
       const res = await chainApi.getTransactionHex(tx);
-      expect(typeof res).to.equal('string');
+      expect(res).to.equal(hexRes);
     });
   });
 
   describe('Get version', () => {
     it('should return a string === *.**.*', async () => {
       const res = await chainApi.getVersion();
-      if (res instanceof Object && !(res instanceof Array)) {
-        expect(res.blockchain_version).to.match(/([0-9]\.[0-9]{2}\.[0-9])/);
-      } else {
-        expect(false).equal(true);
-      }
+      expect(res.blockchain_version).to.match(/([0-9]\.[0-9]{2}\.[0-9])/);
     });
   });
 
@@ -183,7 +149,7 @@ describe('ChainAPI', function() {
               reward_sbd: '0.000 SBD',
               reward_vests: '0.000001 VESTS'
             }
-          ]
+          ] as Operation
         ],
         extensions: [],
         signatures: [

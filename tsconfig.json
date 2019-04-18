@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "outDir": "dist/",
+    "outDir": "lib/",
     "lib": ["dom", "esnext", "es6", "es5"],
     "types": ["node"],
     "skipLibCheck": false,

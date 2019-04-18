@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SignedTransaction | type-steem</title>
+	<title>ChainVersion | type-steem</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="signedtransaction.html">SignedTransaction</a>
+					<a href="chainversion.html">ChainVersion</a>
 				</li>
 			</ul>
-			<h1>Interface SignedTransaction</h1>
+			<h1>Interface ChainVersion</h1>
 		</div>
 	</div>
 </header>
@@ -68,17 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="transaction.html" class="tsd-signature-type">Transaction</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">SignedTransaction</span>
-								<ul class="tsd-hierarchy">
-									<li>
-										<a href="confirmedtransaction.html" class="tsd-signature-type">ConfirmedTransaction</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
+						<span class="target">ChainVersion</span>
 					</li>
 				</ul>
 			</section>
@@ -89,12 +79,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="signedtransaction.html#expiration" class="tsd-kind-icon">expiration</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="signedtransaction.html#extensions" class="tsd-kind-icon">extensions</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="signedtransaction.html#operations" class="tsd-kind-icon">operations</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="signedtransaction.html#ref_block_num" class="tsd-kind-icon">ref_<wbr>block_<wbr>num</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="signedtransaction.html#ref_block_prefix" class="tsd-kind-icon">ref_<wbr>block_<wbr>prefix</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="signedtransaction.html#signatures" class="tsd-kind-icon">signatures</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="chainversion.html#blockchain_version" class="tsd-kind-icon">blockchain_<wbr>version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="chainversion.html#chain_id" class="tsd-kind-icon">chain_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="chainversion.html#fc_revision" class="tsd-kind-icon">fc_<wbr>revision</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="chainversion.html#steem_revision" class="tsd-kind-icon">steem_<wbr>revision</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,68 +90,43 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="expiration" class="tsd-anchor"></a>
-					<h3>expiration</h3>
-					<div class="tsd-signature tsd-kind-icon">expiration<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="blockchain_version" class="tsd-anchor"></a>
+					<h3>blockchain_<wbr>version</h3>
+					<div class="tsd-signature tsd-kind-icon">blockchain_<wbr>version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="transaction.html">Transaction</a>.<a href="transaction.html#expiration">expiration</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/Steem/Transaction.ts#L4">Steem/Transaction.ts:4</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="extensions" class="tsd-anchor"></a>
-					<h3>extensions</h3>
-					<div class="tsd-signature tsd-kind-icon">extensions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="transaction.html">Transaction</a>.<a href="transaction.html#extensions">extensions</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/Steem/Transaction.ts#L6">Steem/Transaction.ts:6</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="operations" class="tsd-anchor"></a>
-					<h3>operations</h3>
-					<div class="tsd-signature tsd-kind-icon">operations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="transaction.html">Transaction</a>.<a href="transaction.html#operations">operations</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/Steem/Transaction.ts#L5">Steem/Transaction.ts:5</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="ref_block_num" class="tsd-anchor"></a>
-					<h3>ref_<wbr>block_<wbr>num</h3>
-					<div class="tsd-signature tsd-kind-icon">ref_<wbr>block_<wbr>num<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="transaction.html">Transaction</a>.<a href="transaction.html#ref_block_num">ref_block_num</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/Steem/Transaction.ts#L2">Steem/Transaction.ts:2</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="ref_block_prefix" class="tsd-anchor"></a>
-					<h3>ref_<wbr>block_<wbr>prefix</h3>
-					<div class="tsd-signature tsd-kind-icon">ref_<wbr>block_<wbr>prefix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="transaction.html">Transaction</a>.<a href="transaction.html#ref_block_prefix">ref_block_prefix</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/Steem/Transaction.ts#L3">Steem/Transaction.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/Steem/Blockchain.ts#L222">Steem/Blockchain.ts:222</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="signatures" class="tsd-anchor"></a>
-					<h3>signatures</h3>
-					<div class="tsd-signature tsd-kind-icon">signatures<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="chain_id" class="tsd-anchor"></a>
+					<h3>chain_<wbr>id</h3>
+					<div class="tsd-signature tsd-kind-icon">chain_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/Steem/Transaction.ts#L10">Steem/Transaction.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/Steem/Blockchain.ts#L223">Steem/Blockchain.ts:223</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="fc_revision" class="tsd-anchor"></a>
+					<h3>fc_<wbr>revision</h3>
+					<div class="tsd-signature tsd-kind-icon">fc_<wbr>revision<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/Steem/Blockchain.ts#L224">Steem/Blockchain.ts:224</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="steem_revision" class="tsd-anchor"></a>
+					<h3>steem_<wbr>revision</h3>
+					<div class="tsd-signature tsd-kind-icon">steem_<wbr>revision<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/Steem/Blockchain.ts#L225">Steem/Blockchain.ts:225</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,25 +145,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="signedtransaction.html" class="tsd-kind-icon">Signed<wbr>Transaction</a>
+						<a href="chainversion.html" class="tsd-kind-icon">Chain<wbr>Version</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="signedtransaction.html#expiration" class="tsd-kind-icon">expiration</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="signedtransaction.html#extensions" class="tsd-kind-icon">extensions</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="signedtransaction.html#operations" class="tsd-kind-icon">operations</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="signedtransaction.html#ref_block_num" class="tsd-kind-icon">ref_<wbr>block_<wbr>num</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="signedtransaction.html#ref_block_prefix" class="tsd-kind-icon">ref_<wbr>block_<wbr>prefix</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="chainversion.html#blockchain_version" class="tsd-kind-icon">blockchain_<wbr>version</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="signedtransaction.html#signatures" class="tsd-kind-icon">signatures</a>
+								<a href="chainversion.html#chain_id" class="tsd-kind-icon">chain_<wbr>id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="chainversion.html#fc_revision" class="tsd-kind-icon">fc_<wbr>revision</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="chainversion.html#steem_revision" class="tsd-kind-icon">steem_<wbr>revision</a>
 							</li>
 						</ul>
 					</li>

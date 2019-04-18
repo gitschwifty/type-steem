@@ -32,11 +32,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # compile the repo to ./dist
-      - run:
-          name: compile-dist
-          command: npm run compile
-
       # Run mocha
       - run:
           name: npm test

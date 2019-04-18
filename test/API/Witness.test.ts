@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { WitnessAPI, Client } from '../../dist';
+import { WitnessAPI, Client } from '../../src';
 import chai from 'chai';
 const expect = chai.expect;
 

@@ -1,67 +1,40 @@
-import { Client, RPCCall, RPCResult, APIType, ClientOptions } from './Client';
+/**
+ * @file Market API Class.
+ * @author Peter James Taggart <code@pjtaggart.com>
+ */
+
+import { Client } from './Client';
 import { CheckParams } from '../Helpers/Utils';
+import {
+  PriceQuote,
+  MarketHistory,
+  MarketOrder,
+  OrderBook,
+  MarketTrade,
+  MarketTicker
+} from '../Steem/Market';
+import { API } from './API';
 
-export interface PriceQuote {
-  base: string;
-  quote: string;
-}
-
-export interface MarketHistory {
-  id: number;
-  non_steem: MarketTimeSlice;
-  open: string;
-  seconds: number;
-  steem: MarketTimeSlice;
-}
-
-export interface MarketTimeSlice {
-  close: number;
-  high: number;
-  low: number;
-  open: number;
-  volume: number;
-}
-
-export interface MarketOrder {
-  created: string;
-  order_price: PriceQuote;
-  real_price: string;
-  sbd: number;
-  steem: number;
-}
-
-export interface OrderBook {
-  asks: MarketOrder[];
-  bids: MarketOrder[];
-}
-
-export interface MarketTrade {
-  current_pays: string;
-  date: string;
-  open_pays: string;
-}
-
-export interface MarketTicker {
-  highest_bid: string;
-  latest: string;
-  lowest_ask: string;
-  percent_change: string;
-  sbd_volume: string;
-  steem_volume: string;
-}
-
-export class MarketAPI {
-  private client: Client;
+/**
+ * Market API class takes client or creates default
+ */
+export class MarketAPI extends API {
   constructor(client?: Client) {
-    this.client = client ? client : new Client();
+    super(client);
   }
 
+  /**
+   * Returns current price quote
+   */
   public getCurrentMedianHistoryPrice() {
     return this.client.callCondenserApi<PriceQuote>(
       'get_current_median_history_price'
     );
   }
 
+  /**
+   * Returns price feed history, including current price and last x prices
+   */
   public getFeedHistory() {
     return this.client.callCondenserApi<{
       id: number;
@@ -70,6 +43,12 @@ export class MarketAPI {
     }>('get_feed_history');
   }
 
+  /**
+   * Returns market history from start to end split into array by bucketSeconds
+   * @param bucketSeconds 0 < integer <= 86400
+   * @param start start date
+   * @param end end date
+   */
   public getMarketHistory(bucketSeconds: number, start: string, end: string) {
     if (bucketSeconds < 1) {
       throw new Error('Bucket segments must be greater than 1 second.');
@@ -84,6 +63,10 @@ export class MarketAPI {
     ]);
   }
 
+  /**
+   * Gets account's current market orders
+   * @param account
+   */
   public getOpenOrders(account: string) {
     CheckParams({ account });
 
@@ -92,12 +75,20 @@ export class MarketAPI {
     ]);
   }
 
+  /**
+   * Gets the current orderbook, up to limit
+   * @param limit 1 < limit < 500
+   */
   public getOrderBook(limit: number) {
     CheckParams({ limit }, 500);
 
     return this.client.callCondenserApi<OrderBook>('get_order_book', [limit]);
   }
 
+  /**
+   * Gets recent trades up to limit
+   * @param limit 1 < limit < 1,000
+   */
   public getRecentTrades(limit: number) {
     CheckParams({ limit }, 1000);
 
@@ -106,10 +97,19 @@ export class MarketAPI {
     ]);
   }
 
+  /**
+   * Returns current market ticker
+   */
   public getTicker() {
     return this.client.callCondenserApi<MarketTicker>('get_ticker');
   }
 
+  /**
+   * Gets trade history from start to end, up to limit items
+   * @param start date
+   * @param end date
+   * @param limit 1 < limit < 1,000
+   */
   public getTradeHistory(start: string, end: string, limit: number) {
     CheckParams({ start, end, limit }, 1000);
 
@@ -120,6 +120,9 @@ export class MarketAPI {
     ]);
   }
 
+  /**
+   * Gets current market volume for steem & sbd
+   */
   public getVolume() {
     return this.client.callCondenserApi<{
       steem_volume: string;

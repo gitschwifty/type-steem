@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import { Client, APIType } from '../../dist';
+import { Client, APIType } from '../../src';
 import chai from 'chai';
 import 'mocha';
 const expect = chai.expect;

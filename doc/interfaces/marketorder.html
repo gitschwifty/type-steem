@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ClientOptions | type-steem</title>
+	<title>MarketOrder | type-steem</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,28 +54,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="clientoptions.html">ClientOptions</a>
+					<a href="marketorder.html">MarketOrder</a>
 				</li>
 			</ul>
-			<h1>Interface ClientOptions</h1>
+			<h1>Interface MarketOrder</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Options for the Client.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ClientOptions</span>
+						<span class="target">MarketOrder</span>
 					</li>
 				</ul>
 			</section>
@@ -86,7 +79,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptions.html#retries" class="tsd-kind-icon">retries</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="marketorder.html#created" class="tsd-kind-icon">created</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="marketorder.html#order_price" class="tsd-kind-icon">order_<wbr>price</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="marketorder.html#real_price" class="tsd-kind-icon">real_<wbr>price</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="marketorder.html#sbd" class="tsd-kind-icon">sbd</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="marketorder.html#steem" class="tsd-kind-icon">steem</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,12 +92,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="retries" class="tsd-anchor"></a>
-					<h3>retries</h3>
-					<div class="tsd-signature tsd-kind-icon">retries<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="created" class="tsd-anchor"></a>
+					<h3>created</h3>
+					<div class="tsd-signature tsd-kind-icon">created<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/19cceb6/src/API/Client.ts#L62">API/Client.ts:62</a></li>
+							<li>Defined in Steem/Market.ts:23</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="order_price" class="tsd-anchor"></a>
+					<h3>order_<wbr>price</h3>
+					<div class="tsd-signature tsd-kind-icon">order_<wbr>price<span class="tsd-signature-symbol">:</span> <a href="pricequote.html" class="tsd-signature-type">PriceQuote</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Steem/Market.ts:24</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="real_price" class="tsd-anchor"></a>
+					<h3>real_<wbr>price</h3>
+					<div class="tsd-signature tsd-kind-icon">real_<wbr>price<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Steem/Market.ts:25</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="sbd" class="tsd-anchor"></a>
+					<h3>sbd</h3>
+					<div class="tsd-signature tsd-kind-icon">sbd<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Steem/Market.ts:26</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="steem" class="tsd-anchor"></a>
+					<h3>steem</h3>
+					<div class="tsd-signature tsd-kind-icon">steem<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Steem/Market.ts:27</li>
 						</ul>
 					</aside>
 				</section>
@@ -119,10 +156,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="clientoptions.html" class="tsd-kind-icon">Client<wbr>Options</a>
+						<a href="marketorder.html" class="tsd-kind-icon">Market<wbr>Order</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="clientoptions.html#retries" class="tsd-kind-icon">retries</a>
+								<a href="marketorder.html#created" class="tsd-kind-icon">created</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="marketorder.html#order_price" class="tsd-kind-icon">order_<wbr>price</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="marketorder.html#real_price" class="tsd-kind-icon">real_<wbr>price</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="marketorder.html#sbd" class="tsd-kind-icon">sbd</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="marketorder.html#steem" class="tsd-kind-icon">steem</a>
 							</li>
 						</ul>
 					</li>

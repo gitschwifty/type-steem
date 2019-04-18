@@ -1,13 +1,25 @@
-import { Client, APIResult, APIType, ClientOptions } from './Client';
-import { SignedBlock } from '../Steem/Block';
-import { Trx, SignedTrx, ConfirmedTrx } from '../Steem/Transaction';
+/**
+ * @file Broadcast API Class.
+ * @author Peter James Taggart <code@pjtaggart.com>
+ */
 
-export class BroadcastAPI {
-  private client: Client;
+import { Client } from './Client';
+import { SignedTrx, ConfirmedTrx } from '../Steem/Transaction';
+import { API } from './API';
+
+/**
+ * Broadcast API class, takes a client or creates its own default.
+ */
+export class BroadcastAPI extends API {
   constructor(client?: Client) {
-    this.client = client ? client : new Client();
+    super(client);
   }
 
+  /**
+   * Broadcasts transaction: untested, takes sync = true if synchronous
+   * @param trx signed transaction to broadcast
+   * @param sync
+   */
   public broadcastTransaction(trx: SignedTrx, sync: boolean = false) {
     const method = sync
       ? 'broadcast_transaction_synchronous'

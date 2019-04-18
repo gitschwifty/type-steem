@@ -1,28 +1,27 @@
-import { Client, APIType, ClientOptions } from './Client';
+/**
+ * @file Wallet API Class.
+ * @author Peter James Taggart <code@pjtaggart.com>
+ */
+
+import { Client } from './Client';
 import { CheckParams } from '../Helpers/Utils';
+import { Delegation, WithdrawRoute } from '../Steem/Wallet';
+import { API } from './API';
 
-export interface Delegation {
-  id: number;
-  delegator: string;
-  delegatee: string;
-  vesting_shares: string;
-  min_delegation_time: string;
-}
-
-export interface WithdrawRoute {
-  id: number;
-  from_account: string;
-  to_account: string;
-  percent: number;
-  auto_vest: boolean;
-}
-
-export class WalletAPI {
-  private client: Client;
+/**
+ * Wallet API Class takes a client or creates a default
+ */
+export class WalletAPI extends API {
   constructor(client?: Client) {
-    this.client = client ? client : new Client();
+    super(client);
   }
 
+  /**
+   * Gets delegator account's delegations up to limit
+   * @param delegator
+   * @param limit 0 < limit <= 1,000
+   * @param startAccount optional account to start from alphabetically
+   */
   public getVestingDelegations(
     delegator: string,
     limit: number,
@@ -36,6 +35,11 @@ export class WalletAPI {
     );
   }
 
+  /**
+   * Gets withdraw routes for account
+   * @param account
+   * @param withdrawType 'outgoing' || 'incoming' || 'all'
+   */
   public getWithdrawRoutes(account: string, withdrawType: string) {
     CheckParams({ account });
 

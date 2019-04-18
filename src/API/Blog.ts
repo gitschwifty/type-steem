@@ -1,8 +1,24 @@
-import { Client, APIResult, APIType, ClientOptions } from './Client';
-import { CheckParams } from '../Helpers/Utils';
-import { Asset } from '../Steem/Asset';
-import { stringify } from 'querystring';
+/**
+ * @file Blog API Class.
+ * @author Peter James Taggart <code@pjtaggart.com>
+ */
 
+import { Client } from './Client';
+import { CheckParams } from '../Helpers/Utils';
+import {
+  ActiveVote,
+  BlogPost,
+  BlogEntry,
+  Post,
+  FeedPost,
+  FeedEntry
+} from '../Steem/Comment';
+import { Follower } from '../Steem/Account';
+import { API } from './API';
+
+/**
+ * Filter for get_discussion calls.
+ */
 export interface DiscussionFilter {
   tag: string;
   limit: number;
@@ -12,6 +28,9 @@ export interface DiscussionFilter {
   truncateBody: number;
 }
 
+/**
+ * Sort types for get_discussion calls.
+ */
 export type DiscussionSort =
   | 'active'
   | 'blog'
@@ -23,127 +42,20 @@ export type DiscussionSort =
   | 'trending'
   | 'votes';
 
-export interface ActiveVote {
-  voter: string;
-  weight: string;
-  rshares: number;
-  percent: number;
-  reputation: string;
-  time?: string;
-}
-
-export interface BlogPost {
-  blog: string;
-  comment: Comment;
-  entry_id: number;
-  reblog_on: string;
-}
-
-export interface FeedPost {
-  comment: Comment;
-  entry_id: number;
-  reblog_on: string;
-  reblog_by: any[];
-}
-
-export interface FeedEntry {
-  author: string;
-  entry_id: number;
-  permlink: string;
-  reblog_by: any[];
-  reblog_on: string;
-}
-
-export interface Comment {
-  abs_rshares: number;
-  active: string;
-  allow_curation_rewards: boolean;
-  allow_replies: boolean;
-  allow_votes: boolean;
-  author: string;
-  author_rewards: number;
-  beneficiaries: any[];
-  body: string;
-  cashout_time: string;
-  category: string;
-  children: number;
-  children_abs_rshares: string;
-  created: string;
-  curator_payout_value: Asset;
-  depth: number;
-  id: number;
-  json_metadata: string;
-  last_payout: string;
-  last_update: string;
-  max_accepted_payout: Asset;
-  max_cashout_time: string;
-  net_rshares: number;
-  net_votes: number;
-  parent_author: string;
-  parent_permlink: string;
-  percent_steem_dollars: number;
-  permlink: string;
-  reward_weight: number;
-  root_author: string;
-  root_permlink: string;
-  title: string;
-  total_payout_value: Asset;
-  total_vote_weight: number;
-  vote_rshares: number;
-}
-
-export interface BlogEntry {
-  author: string;
-  blog: string;
-  entry_id: number;
-  permlink: string;
-  reblog_on: string;
-}
-
-export interface Post {
-  active_votes: ActiveVote[];
-  author: string;
-  author_reputation: number;
-  beneficiaries: any[];
-  body: string;
-  body_length: number;
-  cashout_time: string;
-  category: string;
-  children: number;
-  created: string;
-  curator_payout_value: string;
-  depth: number;
-  json_metadata: string;
-  last_payout: string;
-  last_update: string;
-  max_accepted_payout: string;
-  net_rshares: number;
-  parent_author: string;
-  parent_permlink: string;
-  pending_payout_value: string;
-  percent_steem_dollars: number;
-  permlink: string;
-  post_id: number;
-  promoted: string;
-  replies: any[];
-  root_title: string;
-  title: string;
-  total_payout_value: string;
-  url: string;
-}
-
-export interface Follower {
-  follower: string;
-  following: string;
-  what: string[];
-}
-
-export class BlogAPI {
-  private client: Client;
+/**
+ * Blog API Class. Takes a client as a parameter or creates its own default.
+ */
+export class BlogAPI extends API {
   constructor(client?: Client) {
-    this.client = client ? client : new Client();
+    super(client);
   }
 
+  /**
+   * Gets active votes on a post
+   * @param author
+   * @param permlink
+   * @returns Array of votes
+   */
   public getActiveVotes(author: string, permlink: string) {
     CheckParams({ author, permlink });
 
@@ -153,6 +65,12 @@ export class BlogAPI {
     ]);
   }
 
+  /**
+   * Gets limit blog posts from account starting from startId
+   * @param account account name
+   * @param startId positive integer
+   * @param limit 500 >= integer > 0
+   */
   public getBlog(account: string, startId: number, limit: number) {
     CheckParams({ account, startId, limit }, 500);
 
@@ -163,6 +81,10 @@ export class BlogAPI {
     ]);
   }
 
+  /**
+   * Gets authors that have been reblogged on account & number of reblogs
+   * @param account account name
+   */
   public getBlogAuthors(account: string) {
     CheckParams({ account });
 
@@ -172,6 +94,12 @@ export class BlogAPI {
     );
   }
 
+  /**
+   * Gets limit blog entries from account starting from startId
+   * @param account account name
+   * @param startId positive integer
+   * @param limit 500 >= integer > 0
+   */
   public getBlogEntries(account: string, startId: number, limit: number) {
     CheckParams({ account, startId, limit }, 500);
 
@@ -182,6 +110,10 @@ export class BlogAPI {
     ]);
   }
 
+  /**
+   * Gets discussions by payout
+   * @param filter how to filter the discussions
+   */
   public getCommentDiscussionsByPayout(filter: DiscussionFilter) {
     return this.client.callCondenserApi<Post[]>(
       'get_comment_discussions_by_payout',
@@ -189,12 +121,24 @@ export class BlogAPI {
     );
   }
 
+  /**
+   * Gets discussions by a sort type
+   * @param by sort type
+   * @param filter how to filter the discussions (for blog tag is author)
+   */
   public getDiscussions(by: DiscussionSort, filter: DiscussionFilter) {
     return this.client.callCondenserApi<Post[]>('get_discussions_by_' + by, [
       filter
     ]);
   }
 
+  /**
+   * Gets posts by an author before a date
+   * @param author
+   * @param permlink link to post to start from
+   * @param date date to include to
+   * @param limit 0 < integer <= 500
+   */
   public getDiscussionsByAuthorBeforeDate(
     author: string,
     permlink: string,
@@ -209,6 +153,12 @@ export class BlogAPI {
     );
   }
 
+  /**
+   * Gets comments on post
+   * @param startAuthor author to start from
+   * @param limit number of comments
+   * @param startPermlink root permlink
+   */
   public getDiscussionsByComments(
     startAuthor: string,
     limit: number,
@@ -221,6 +171,11 @@ export class BlogAPI {
     ]);
   }
 
+  /**
+   * Gets posts by a tag
+   * @param tag
+   * @param limit 0 < integer <= 500
+   */
   public getDiscussionsByFeed(tag: string, limit: number) {
     CheckParams({ tag, limit }, 500);
 
@@ -229,6 +184,12 @@ export class BlogAPI {
     ]);
   }
 
+  /**
+   * Gets account name's feed
+   * @param account account name
+   * @param startId id to start from
+   * @param limit number of feed posts to get
+   */
   public getFeed(account: string, startId: number, limit: number) {
     CheckParams({ account, startId, limit }, 500);
 
@@ -239,6 +200,12 @@ export class BlogAPI {
     ]);
   }
 
+  /**
+   * Gets account name's feed entries
+   * @param account account name
+   * @param startId id to start from
+   * @param limit number of feed posts to get
+   */
   public getFeedEntries(account: string, startId: number, limit: number) {
     CheckParams({ account, startId, limit }, 500);
 
@@ -249,6 +216,10 @@ export class BlogAPI {
     ]);
   }
 
+  /**
+   * Gets account's follower and following number
+   * @param account
+   */
   public getFollowCount(account: string) {
     CheckParams({ account });
 
@@ -259,6 +230,14 @@ export class BlogAPI {
     }>('get_follow_count', [account]);
   }
 
+  /**
+   * Get's account following or followers, up to limit
+   * @param account
+   * @param type 'blog'
+   * @param limit 0 < integer <= 1000
+   * @param following pass false for followers, true for following
+   * @param start optional follow name to start from
+   */
   public getFollows(
     account: string,
     type: string,
