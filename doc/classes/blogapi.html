@@ -75,7 +75,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BlogAPI</span>
+						<a href="api.html" class="tsd-signature-type">API</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">BlogAPI</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -86,18 +91,19 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="blogapi.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="blogapi.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="blogapi.html#client" class="tsd-kind-icon">client</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="blogapi.html#client" class="tsd-kind-icon">client</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="blogapi.html#changeretries" class="tsd-kind-icon">change<wbr>Retries</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="blogapi.html#getactivevotes" class="tsd-kind-icon">get<wbr>Active<wbr>Votes</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="blogapi.html#getblog" class="tsd-kind-icon">get<wbr>Blog</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="blogapi.html#getblogauthors" class="tsd-kind-icon">get<wbr>Blog<wbr>Authors</a></li>
@@ -111,6 +117,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="blogapi.html#getfeedentries" class="tsd-kind-icon">get<wbr>Feed<wbr>Entries</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="blogapi.html#getfollowcount" class="tsd-kind-icon">get<wbr>Follow<wbr>Count</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="blogapi.html#getfollows" class="tsd-kind-icon">get<wbr>Follows</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="blogapi.html#getnode" class="tsd-kind-icon">get<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="blogapi.html#getoptions" class="tsd-kind-icon">get<wbr>Options</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,17 +126,18 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">new <wbr>BlogAPI<span class="tsd-signature-symbol">(</span>client<span class="tsd-signature-symbol">?: </span><a href="client.html" class="tsd-signature-type">Client</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="blogapi.html" class="tsd-signature-type">BlogAPI</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="api.html">API</a>.<a href="api.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L48">API/Blog.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L48">API/Blog.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -142,21 +151,51 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="client" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> client</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> client</h3>
 					<div class="tsd-signature tsd-kind-icon">client<span class="tsd-signature-symbol">:</span> <a href="client.html" class="tsd-signature-type">Client</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="api.html">API</a>.<a href="api.html#client">client</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L48">API/Blog.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/API.ts#L12">API/API.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="changeretries" class="tsd-anchor"></a>
+					<h3>change<wbr>Retries</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">change<wbr>Retries<span class="tsd-signature-symbol">(</span>retries<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="api.html">API</a>.<a href="api.html#changeretries">changeRetries</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/API.ts#L34">API/API.ts:34</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>changes the number of retries for each call</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>retries: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getactivevotes" class="tsd-anchor"></a>
 					<h3>get<wbr>Active<wbr>Votes</h3>
@@ -167,7 +206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L59">API/Blog.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L59">API/Blog.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -199,7 +238,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L74">API/Blog.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L85">API/Blog.ts:85</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -242,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L88">API/Blog.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L93">API/Blog.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -273,7 +312,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L103">API/Blog.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L108">API/Blog.ts:108</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -316,7 +355,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L117">API/Blog.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L121">API/Blog.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -347,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L129">API/Blog.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L133">API/Blog.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -384,7 +423,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L142">API/Blog.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L146">API/Blog.ts:146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -430,7 +469,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L162">API/Blog.ts:162</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L166">API/Blog.ts:166</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -473,7 +512,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L179">API/Blog.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L183">API/Blog.ts:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -507,7 +546,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L193">API/Blog.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L197">API/Blog.ts:197</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -550,7 +589,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L209">API/Blog.ts:209</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L207">API/Blog.ts:207</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -593,7 +632,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L223">API/Blog.ts:223</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L220">API/Blog.ts:220</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -623,7 +662,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/6c1112a/src/API/Blog.ts#L241">API/Blog.ts:241</a></li>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/Blog.ts#L238">API/Blog.ts:238</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -665,6 +704,52 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getnode" class="tsd-anchor"></a>
+					<h3>get<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Node<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="api.html">API</a>.<a href="api.html#getnode">getNode</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/API.ts#L20">API/API.ts:20</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns the current steem node</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getoptions" class="tsd-anchor"></a>
+					<h3>get<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Options<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/clientoptions.html" class="tsd-signature-type">ClientOptions</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="api.html">API</a>.<a href="api.html#getoptions">getOptions</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/gitschwifty/type-steem/blob/bb3a06c/src/API/API.ts#L27">API/API.ts:27</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns the current client options</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/clientoptions.html" class="tsd-signature-type">ClientOptions</a></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -682,11 +767,14 @@
 					<li class="current tsd-kind-class">
 						<a href="blogapi.html" class="tsd-kind-icon">BlogAPI</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="blogapi.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="blogapi.html#client" class="tsd-kind-icon">client</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="blogapi.html#changeretries" class="tsd-kind-icon">change<wbr>Retries</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="blogapi.html#getactivevotes" class="tsd-kind-icon">get<wbr>Active<wbr>Votes</a>
@@ -726,6 +814,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="blogapi.html#getfollows" class="tsd-kind-icon">get<wbr>Follows</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="blogapi.html#getnode" class="tsd-kind-icon">get<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="blogapi.html#getoptions" class="tsd-kind-icon">get<wbr>Options</a>
 							</li>
 						</ul>
 					</li>

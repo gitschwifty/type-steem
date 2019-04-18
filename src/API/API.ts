@@ -14,14 +14,23 @@ export class API {
     this.client = client ? client : new Client();
   }
 
+  /**
+   * returns the current steem node
+   */
   public getNode() {
     return this.client.steemNode;
   }
 
+  /**
+   * returns the current client options
+   */
   public getOptions() {
     return this.client.options;
   }
 
+  /**
+   * changes the number of retries for each call
+   */
   public changeRetries(retries: number) {
     if (retries < 0) {
       throw new Error('Retries cannot be negative.');

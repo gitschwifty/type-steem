@@ -65,10 +65,21 @@ export class Client {
     }
   }
 
+  /**
+   * Calls the condenser api, with method and params, returning Promise<T>
+   * @param method api method to call
+   * @param params parameters, set by api classes
+   */
   public callCondenserApi<T>(method: string, params: unknown[] = []) {
     return this.callAppbaseApi<T>(APIType.cond, method, params);
   }
 
+  /**
+   * Calls the api, with method and params, returning Promise<T>
+   * @param api the api to call (e.g. rc_api, broadcast_api, etc.)
+   * @param method api method to call
+   * @param params parameters, set by api classes
+   */
   public callAppbaseApi<T>(api: APIType, method: string, params: unknown = {}) {
     const request: RPCCall = {
       id: '0',
@@ -88,6 +99,11 @@ export class Client {
     return this.APIRetry<T>(opts, 0);
   }
 
+  /**
+   * Retries a fetch using this.steemNode and opts a total of this.options.retries times
+   * @param opts the fetch options to use
+   * @param retry the current retry
+   */
   private APIRetry<T>(opts: RequestInit, retry: number): Promise<T> {
     return new Promise((resolve, reject) => {
       fetch(this.steemNode, opts)

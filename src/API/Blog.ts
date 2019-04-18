@@ -65,6 +65,17 @@ export class BlogAPI extends API {
     ]);
   }
 
+  private getPosts<T>(
+    method: string,
+    account: string,
+    startId: number,
+    limit: number
+  ) {
+    CheckParams({ account, startId, limit }, 500);
+
+    return this.client.callCondenserApi<T>(method, [account, startId, limit]);
+  }
+
   /**
    * Gets limit blog posts from account starting from startId
    * @param account account name
@@ -72,13 +83,7 @@ export class BlogAPI extends API {
    * @param limit 500 >= integer > 0
    */
   public getBlog(account: string, startId: number, limit: number) {
-    CheckParams({ account, startId, limit }, 500);
-
-    return this.client.callCondenserApi<BlogPost[]>('get_blog', [
-      account,
-      startId,
-      limit
-    ]);
+    return this.getPosts<BlogPost[]>('get_blog', account, startId, limit);
   }
 
   /**
@@ -101,13 +106,12 @@ export class BlogAPI extends API {
    * @param limit 500 >= integer > 0
    */
   public getBlogEntries(account: string, startId: number, limit: number) {
-    CheckParams({ account, startId, limit }, 500);
-
-    return this.client.callCondenserApi<BlogEntry[]>('get_blog_entries', [
+    return this.getPosts<BlogEntry[]>(
+      'get_blog_entries',
       account,
       startId,
       limit
-    ]);
+    );
   }
 
   /**
@@ -191,13 +195,7 @@ export class BlogAPI extends API {
    * @param limit number of feed posts to get
    */
   public getFeed(account: string, startId: number, limit: number) {
-    CheckParams({ account, startId, limit }, 500);
-
-    return this.client.callCondenserApi<FeedPost[]>('get_feed', [
-      account,
-      startId,
-      limit
-    ]);
+    return this.getPosts<FeedPost[]>('get_feed', account, startId, limit);
   }
 
   /**
@@ -207,13 +205,12 @@ export class BlogAPI extends API {
    * @param limit number of feed posts to get
    */
   public getFeedEntries(account: string, startId: number, limit: number) {
-    CheckParams({ account, startId, limit }, 500);
-
-    return this.client.callCondenserApi<FeedEntry[]>('get_feed_entries', [
+    return this.getPosts<FeedEntry[]>(
+      'get_feed_entries',
       account,
       startId,
       limit
-    ]);
+    );
   }
 
   /**

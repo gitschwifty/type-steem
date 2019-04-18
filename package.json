@@ -8,9 +8,8 @@
     "compile": "tsc",
     "test": "nyc mocha",
     "posttest": "rm -rf .nyc_output",
-    "report": "npm run test && nyc report",
     "lint": "tslint src/**/* -t junit -o ./reports/tslint/tslint.xml",
-    "doc": "typedoc --out ./doc --readme ./README.md --mode file --excludeNotExported"
+    "doc": "typedoc --out ./doc --readme ./README.md --mode file --excludeNotExported --excludePrivate"
   },
   "repository": {
     "type": "git",
